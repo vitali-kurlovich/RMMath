@@ -1,0 +1,52 @@
+//
+// Created by Vitali Kurlovich on 1/7/16.
+//
+
+#ifndef RMVECTORMATH_TMATRIX3X4_FUNC_MULVEC_HPP
+#define RMVECTORMATH_TMATRIX3X4_FUNC_MULVEC_HPP
+
+#ifdef RM_MATH_STAT
+#include <profiler/profiler.hpp>
+#endif
+
+#include "../TMatrix3x4_def.hpp"
+
+#include "../../../vector/vector4x/TVector4_def.hpp"
+#include "../../../vector/vector3x/TVector3_def.hpp"
+
+namespace rmmath {
+
+    template<typename T>
+    inline vector::TVector3<T> mul(const matrix::TMatrix3x4<T> &a, const vector::TVector4<T> &b) {
+        vector::TVector3<T> c;
+
+        c.x = a.m03*b.w + a.m00*b.x + a.m01*b.y + a.m02*b.z;
+        c.y = a.m13*b.w + a.m10*b.x + a.m11*b.y + a.m12*b.z;
+        c.z = a.m23*b.w + a.m20*b.x + a.m21*b.y + a.m22*b.z;
+
+#ifdef RM_MATH_STAT
+        RM_STAT_MUL(12)
+        RM_STAT_SUM(9)
+#endif
+        return c;
+    }
+
+
+    template<typename T>
+    inline vector::TVector4<T> mul(const vector::TVector3<T> &b, const matrix::TMatrix3x4<T> &a) {
+        vector::TVector4<T> c;
+
+        c.x = a.m00*b.x + a.m10*b.y + a.m20*b.z;
+        c.y = a.m01*b.x + a.m11*b.y + a.m21*b.z;
+        c.z = a.m02*b.x + a.m12*b.y + a.m22*b.z;
+        c.w = a.m03*b.x + a.m13*b.y + a.m23*b.z;
+
+#ifdef RM_MATH_STAT
+        RM_STAT_MUL(12)
+        RM_STAT_SUM(8)
+#endif
+        return c;
+    }
+}
+
+#endif //RMVECTORMATH_TMATRIX3X4_FUNC_MULVEC_HPP
