@@ -1,0 +1,3 @@
+[submodule "rmvmathtest/libs"]
+	path = rmvmathtest/libs
+	url = https://github.com/google/googletest.git
