@@ -78,10 +78,17 @@ add_executable(runBasicMathTests
         vector/affinevector3/TAffineVector3_test_types.h
         vector/affinevector3/TAffineVector3_func_test.cpp
 
+        vector/affinevector4/TAffineVector4_operator_test.cpp
+        vector/affinevector3/TAffineVector3_operator_test.cpp
+
+
         profiler/MathStatisticTest.cpp
         profiler/RMProfilerTest.cpp
         profiler/RMProfilerStatOffTest.cpp
-        vector/affinevector4/TAffineVector4_operator_test.cpp vector/affinevector3/TAffineVector3_operator_test.cpp)
+
+        quaternion/TQuaternion_operator_test.cpp
+
+        )
 
 
 target_link_libraries(runBasicMathTests gtest gtest_main)
