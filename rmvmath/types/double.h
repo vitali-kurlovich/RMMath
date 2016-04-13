@@ -7,5 +7,7 @@
 
 #include "mt_double_type.hpp"
 #include "vec_double_type.hpp"
+#include "quaternion_double_type.hpp"
+
 
 #endif //RMVECTORMATH_DOUBLE_H

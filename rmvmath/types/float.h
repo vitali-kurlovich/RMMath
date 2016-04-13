@@ -7,5 +7,7 @@
 
 #include "mt_float_type.hpp"
 #include "vec_float_type.hpp"
+#include "quaternion_float_type.hpp"
+
 
 #endif //RMVECTORMATH_FLOAT_H
