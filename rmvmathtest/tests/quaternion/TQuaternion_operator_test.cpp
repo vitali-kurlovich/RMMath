@@ -19,7 +19,7 @@ TEST(quaternion_op, equal) {
 }
 
 
-// ==
+// !=
 
 TEST(quaternion_op, nequal) {
     tqti a = {-30, 20, -4, 3};

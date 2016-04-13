@@ -87,6 +87,7 @@ add_executable(runBasicMathTests
         profiler/RMProfilerStatOffTest.cpp
 
         quaternion/TQuaternion_operator_test.cpp
+        quaternion/TQuaternion_func_test.cpp
 
         )
 
