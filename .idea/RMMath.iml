@@ -16,6 +16,9 @@
       <sourceFolder url="file://$MODULE_DIR$/rmvmathtest/tests/vector/vector2/TVector2_operator_test.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/rmvmathtest/tests/vector/vector2/TVector2_func_test.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/rmvmathtest/tests/vector/vector2/TVector2_func_interpolation_test.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/rmvmathtest/tests/profiler/MathStatisticTest.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/rmvmathtest/tests/profiler/RMProfilerTest.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/rmvmathtest/tests/profiler/RMProfilerStatOffTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/rmvmathtest/tests/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/rmvmathtest/tests/matrix/matrix1x4/TMatrix1x4_operator_test.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/rmvmathtest/tests/matrix/matrix1x4/TMatrix1x4_func_test.cpp" isTestSource="false" />
@@ -53,9 +56,8 @@
       <sourceFolder url="file://$MODULE_DIR$/rmvmathtest/tests/matrix/matrix1x1/TMatrix1x1_operator_test.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/rmvmathtest/tests/matrix/matrix1x2/TMatrix1x2_func_test.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/rmvmathtest/tests/matrix/matrix1x2/TMatrix1x2_operator_test.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/rmvmathtest/tests/profiler/MathStatisticTest.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/rmvmathtest/tests/profiler/RMProfilerTest.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/rmvmathtest/tests/profiler/RMProfilerStatOffTest.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/rmvmathtest/tests/quaternion/TQuaternion_func_test.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/rmvmathtest/tests/quaternion/TQuaternion_operator_test.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/rmvmathtest/profile/ProfileCase.hpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/rmvmathtest/profile/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/rmvmathtest/profile/Profiler.hpp" isTestSource="false" />

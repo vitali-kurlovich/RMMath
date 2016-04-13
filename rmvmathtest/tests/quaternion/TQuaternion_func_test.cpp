@@ -35,18 +35,18 @@ TEST(quaternion_op, div) {
 
     tqtf result = {0.307229, -0.0823293, 0.062249, -0.0582329};
 
-    EXPECT_NEAR(div(a, b).q, result.q, 0.000001);
+    EXPECT_NEAR(div(a, b).w, result.w, 0.000001);
     EXPECT_NEAR(div(a, b).x, result.x, 0.000001);
     EXPECT_NEAR(div(a, b).y, result.y, 0.000001);
     EXPECT_NEAR(div(a, b).z, result.z, 0.000001);
 
-    EXPECT_NEAR((a/b).q, result.q, 0.000001);
+    EXPECT_NEAR((a/b).w, result.w, 0.000001);
     EXPECT_NEAR((a/b).x, result.x, 0.000001);
     EXPECT_NEAR((a/b).y, result.y, 0.000001);
     EXPECT_NEAR((a/b).z, result.z, 0.000001);
 
 
-    EXPECT_NEAR(((a/b)*b).q, a.q, 0.000001);
+    EXPECT_NEAR(((a/b)*b).w, a.w, 0.000001);
     EXPECT_NEAR(((a/b)*b).x, a.x, 0.000001);
     EXPECT_NEAR(((a/b)*b).y, a.y, 0.000001);
     EXPECT_NEAR(((a/b)*b).z, a.z, 0.000001);
@@ -60,12 +60,12 @@ TEST(quaternion_op, div) {
 
     result = {0.185185, -0.277778, -0.37037, -0.462963};
 
-    EXPECT_NEAR(div(5.f, a).q, result.q, 0.000001);
+    EXPECT_NEAR(div(5.f, a).w, result.w, 0.000001);
     EXPECT_NEAR(div(5.f, a).x, result.x, 0.000001);
     EXPECT_NEAR(div(5.f, a).y, result.y, 0.000001);
     EXPECT_NEAR(div(5.f, a).z, result.z, 0.000001);
 
-    EXPECT_NEAR((5.f/a).q, result.q, 0.000001);
+    EXPECT_NEAR((5.f/a).w, result.w, 0.000001);
     EXPECT_NEAR((5.f/a).x, result.x, 0.000001);
     EXPECT_NEAR((5.f/a).y, result.y, 0.000001);
     EXPECT_NEAR((5.f/a).z, result.z, 0.000001);
@@ -131,7 +131,7 @@ TEST(quaternion_op, norm) {
 TEST(quaternion_op, inverse) {
     tqtf a = {25, -42, 92, -2};
 
-    EXPECT_NEAR((inverse(a)*a).q, 1.f, 0.000001);
+    EXPECT_NEAR((inverse(a)*a).w, 1.f, 0.000001);
     EXPECT_NEAR((inverse(a)*a).x, 0.f, 0.000001);
     EXPECT_NEAR((inverse(a)*a).y, 0.f, 0.000001);
     EXPECT_NEAR((inverse(a)*a).z, 0.f, 0.000001);

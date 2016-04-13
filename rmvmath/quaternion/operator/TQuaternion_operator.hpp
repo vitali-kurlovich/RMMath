@@ -15,7 +15,7 @@ namespace rmmath {
 
         template<typename T>
         inline bool operator == (const TQuaternion<T> &a, const TQuaternion<T> &b) {
-            return &a == &b || (a.q == b.q && a.x == b.x && a.y == b.y && a.z == b.z);
+            return &a == &b || (a.w == b.w && a.x == b.x && a.y == b.y && a.z == b.z);
         }
 
         template<typename T>

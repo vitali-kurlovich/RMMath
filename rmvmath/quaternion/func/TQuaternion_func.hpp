@@ -19,10 +19,10 @@ namespace rmmath {
         template<typename T>
         inline TQuaternion<T> mul(const TQuaternion<T> &a, const TQuaternion<T> &b) {
             TQuaternion<T> c = {
-                            a.q*b.q - a.x*b.x - a.y*b.y - a.z*b.z,
-                            a.x*b.q + a.q*b.x - a.z*b.y + a.y*b.z,
-                            a.y*b.q + a.z*b.x + a.q*b.y - a.x*b.z,
-                            a.z*b.q - a.y*b.x + a.x*b.y + a.q*b.z
+                            a.w*b.w - a.x*b.x - a.y*b.y - a.z*b.z,
+                            a.x*b.w + a.w*b.x - a.z*b.y + a.y*b.z,
+                            a.y*b.w + a.z*b.x + a.w*b.y - a.x*b.z,
+                            a.z*b.w - a.y*b.x + a.x*b.y + a.w*b.z
                     };
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(16)
@@ -34,7 +34,7 @@ namespace rmmath {
 
         template<typename T>
         inline TQuaternion<T> mul(const TQuaternion<T> &a, const T b) {
-            TQuaternion<T> c = { a.q*b, a.x*b, a.y*b, a.z*b };
+            TQuaternion<T> c = { a.w*b, a.x*b, a.y*b, a.z*b };
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(4)
 #endif
@@ -47,15 +47,14 @@ namespace rmmath {
         }
 
 
-
         template<typename T>
         inline TQuaternion<T> div(const TQuaternion<T> &a, const TQuaternion<T> &b) {
-            auto invnorm = 1/(b.q*b.q + b.x*b.x + b.y*b.y + b.z*b.z);
+            auto invnorm = 1/(b.w*b.w + b.x*b.x + b.y*b.y + b.z*b.z);
 
-            TQuaternion<T> c = { (a.q*b.q + a.x*b.x + a.y*b.y + a.z*b.z)*invnorm,
-                                 (a.x*b.q - a.q*b.x + a.z*b.y - a.y*b.z)*invnorm,
-                                 (a.y*b.q - a.z*b.x - a.q*b.y + a.x*b.z)*invnorm,
-                                 (a.z*b.q + a.y*b.x - a.x*b.y - a.q*b.z)*invnorm};
+            TQuaternion<T> c = { (a.w*b.w + a.x*b.x + a.y*b.y + a.z*b.z)*invnorm,
+                                 (a.x*b.w - a.w*b.x + a.z*b.y - a.y*b.z)*invnorm,
+                                 (a.y*b.w - a.z*b.x - a.w*b.y + a.x*b.z)*invnorm,
+                                 (a.z*b.w + a.y*b.x - a.x*b.y - a.w*b.z)*invnorm};
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(24)
             RM_STAT_DIV(1)
@@ -69,7 +68,7 @@ namespace rmmath {
         template<typename T>
         inline TQuaternion<T> div(const TQuaternion<T> &a, const T b) {
             auto invb = 1/b;
-            TQuaternion<T> c = { a.q*invb, a.x*invb, a.y*invb, a.z*invb};
+            TQuaternion<T> c = { a.w*invb, a.x*invb, a.y*invb, a.z*invb};
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(4)
             RM_STAT_DIV(1)
@@ -81,8 +80,8 @@ namespace rmmath {
         template<typename T>
         inline TQuaternion<T> div(const T a, const TQuaternion<T> &b) {
 
-            auto sinvnorm = a/(b.q*b.q + b.x*b.x + b.y*b.y + b.z*b.z);
-            TQuaternion<T> c = { b.q*sinvnorm, -b.x*sinvnorm, -b.y*sinvnorm, -b.z*sinvnorm};
+            auto sinvnorm = a/(b.w*b.w + b.x*b.x + b.y*b.y + b.z*b.z);
+            TQuaternion<T> c = { b.w*sinvnorm, -b.x*sinvnorm, -b.y*sinvnorm, -b.z*sinvnorm};
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(8)
             RM_STAT_DIV(1)
@@ -96,7 +95,7 @@ namespace rmmath {
         template<typename T>
         inline TQuaternion<T> sum(const TQuaternion<T> &a, const TQuaternion<T> &b) {
             TQuaternion<T> c = {
-                    a.q + b.q, a.x + b.x, a.y + b.y, a.z + b.z
+                    a.w + b.w, a.x + b.x, a.y + b.y, a.z + b.z
             };
 #ifdef RM_MATH_STAT
             RM_STAT_SUM(4)
@@ -107,7 +106,7 @@ namespace rmmath {
         template<typename T>
         inline TQuaternion<T> sum(const TQuaternion<T> &a, const T b) {
             TQuaternion<T> c = {
-                    a.q + b, a.x, a.y, a.z
+                    a.w + b, a.x, a.y, a.z
             };
 #ifdef RM_MATH_STAT
             RM_STAT_SUM(1)
@@ -126,7 +125,7 @@ namespace rmmath {
         template<typename T>
         inline TQuaternion<T> sub(const TQuaternion<T> &a, const TQuaternion<T> &b) {
             TQuaternion<T> c = {
-                    a.q - b.q, a.x - b.x, a.y - b.y, a.z - b.z
+                    a.w - b.w, a.x - b.x, a.y - b.y, a.z - b.z
             };
 #ifdef RM_MATH_STAT
             RM_STAT_SUB(4)
@@ -137,7 +136,7 @@ namespace rmmath {
 
         template<typename T>
         inline TQuaternion<T> sub(const TQuaternion<T> &a, const T b) {
-            TQuaternion<T> c = { a.q - b, a.x, a.y, a.z };
+            TQuaternion<T> c = { a.w - b, a.x, a.y, a.z };
 #ifdef RM_MATH_STAT
             RM_STAT_SUB(1)
 #endif
@@ -146,7 +145,7 @@ namespace rmmath {
 
         template<typename T>
         inline TQuaternion<T> sub(const T a, const TQuaternion<T> &b) {
-            TQuaternion<T> c = { a - b.q, -b.x, -b.y, -b.z };
+            TQuaternion<T> c = { a - b.w, -b.x, -b.y, -b.z };
 #ifdef RM_MATH_STAT
             RM_STAT_SUB(1)
 #endif
@@ -156,7 +155,7 @@ namespace rmmath {
 
         template<typename T>
         inline TQuaternion<T> conjugate(const TQuaternion<T> &a) {
-            TQuaternion<T> c = {a.q, -a.x, -a.y, -a.z};
+            TQuaternion<T> c = {a.w, -a.x, -a.y, -a.z};
             return c;
         }
 
@@ -166,14 +165,14 @@ namespace rmmath {
             RM_STAT_MUL(4)
             RM_STAT_SUM(3)
 #endif
-            return a.q*a.q + a.x*a.x + a.y*a.y + a.z*a.z;
+            return a.w*a.w + a.x*a.x + a.y*a.y + a.z*a.z;
         }
 
 
         template<typename T>
         inline TQuaternion<T> inverse(const TQuaternion<T> &a) {
             auto invnorm = 1/norm(a);
-            TQuaternion<T> c = {a.q*invnorm, -a.x*invnorm, -a.y*invnorm, -a.z*invnorm};
+            TQuaternion<T> c = {a.w*invnorm, -a.x*invnorm, -a.y*invnorm, -a.z*invnorm};
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(4)
             RM_STAT_DIV(1)
