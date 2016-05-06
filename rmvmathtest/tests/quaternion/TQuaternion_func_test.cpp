@@ -6,6 +6,32 @@
 
 #include "TQuaternion_test_types.h"
 
+TEST(quaternion, constructor) {
+    tqti a = {5, 3, -8, -98};
+    tvec3i xyz = {3, -8, -98};
+
+    EXPECT_EQ(a.real, 5);
+    EXPECT_EQ(a.xyz, xyz);
+
+    a.xyz = tvec3i(12, 13, 14);
+    a.real = -6;
+
+    EXPECT_EQ(a, tqti(-6, 12, 13, 14));
+
+    EXPECT_EQ(tqti(5, tvec3i(12, 13, 14)), tqti(5, 12, 13, 14));
+
+    EXPECT_EQ(tqti(tvec3i(12, 13, 14), 5), tqti(5, 12, 13, 14));
+    EXPECT_EQ(tqti(tvec3i(12, 13, 14)), tqti(0, 12, 13, 14));
+
+    tqti zero = {0, 0, 0, 0};
+    tqti b;
+
+    EXPECT_EQ(b, zero);
+
+    EXPECT_NE(a, b);
+    a = b;
+    EXPECT_EQ(a, b);
+}
 
 TEST(quaternion_op, mul) {
     tqti a = {1, 2, 3, 4};

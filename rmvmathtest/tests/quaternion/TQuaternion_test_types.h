@@ -7,6 +7,7 @@
 
 
 #include <quaternion/TQuaternion.hpp>
+#include "../vector/vector3/TVector3_test_types.h"
 
 using namespace rmmath;
 using namespace rmmath::quaternion;
