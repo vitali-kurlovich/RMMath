@@ -6,6 +6,21 @@
 
 #include "TVector2_test_types.h"
 
+
+
+TEST(vector2, constructor) {
+    tvec2i a = {3, -8};
+
+    tvec2i zero = {0, 0};
+
+    tvec2i c;
+    EXPECT_EQ(c, zero);
+
+    c = a;
+    EXPECT_EQ(a,c);
+}
+
+
 // Dot
 
 TEST(doti_0, dot) {

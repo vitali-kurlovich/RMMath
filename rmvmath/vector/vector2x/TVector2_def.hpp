@@ -13,6 +13,20 @@ namespace rmmath {
         template<typename T>
         struct TVector2 {
             T x, y;
+
+
+            TVector2(const T x = 0, const T y = 0)
+                    : x(x), y(y)
+            {
+
+            }
+
+            TVector2(const TVector2<T>& other)
+                    : x(other.x), y(other.y)
+            {
+
+            }
+
         };
 
     }
