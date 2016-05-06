@@ -15,11 +15,16 @@ TEST(vector4, constructor) {
     EXPECT_EQ(a.xyz, xyz);
     EXPECT_EQ(a.xy, xy);
 
+    a.xyz = tvec3i(7,6,5);
+    EXPECT_EQ(a, tvec4i(7,6,5,4));
+
+    a.xy = tvec2i(8,9);
+    EXPECT_EQ(a, tvec4i(8,9,5,4));
+
     tvec4i zero = {0, 0, 0, 0};
 
     tvec4i c;
     EXPECT_EQ(c, zero);
-
 
 
     xyz = {3, -8, -98};

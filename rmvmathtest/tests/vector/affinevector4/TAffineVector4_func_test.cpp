@@ -17,6 +17,12 @@ TEST(affinevector4, constructor) {
     EXPECT_EQ(a.xyz, xyz);
     EXPECT_EQ(a.xy, xy);
 
+    a.xyz = tvec3i(3,4,5);
+    EXPECT_EQ(a, tavec4i(3,4,5));
+
+    a.xy = tvec2i(6,7);
+    EXPECT_EQ(a, tavec4i(6,7,5));
+
     tavec4i zero = {0, 0, 0};
 
     tavec4i c;
