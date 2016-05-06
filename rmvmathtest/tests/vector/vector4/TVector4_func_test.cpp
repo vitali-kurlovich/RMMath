@@ -6,6 +6,31 @@
 
 #include "TVector4_test_types.h"
 
+
+TEST(vector4, constructor) {
+    tvec4i a = {3, -8, -98, 4};
+    tvec3i xyz = {3, -8, -98};
+    tvec2i xy = {3, -8};
+
+    EXPECT_EQ(a.xyz, xyz);
+    EXPECT_EQ(a.xy, xy);
+
+    tvec4i zero = {0, 0, 0, 0};
+
+    tvec4i c;
+    EXPECT_EQ(c, zero);
+
+    c = a;
+    EXPECT_EQ(a,c);
+
+    tavec4i affine = {2,3,4};
+
+    c = affine;
+
+    EXPECT_EQ(c, tvec4i(2,3,4,1));
+
+}
+
 // Dot
 
 TEST(doti_nonull, dot4) {
@@ -14,8 +39,6 @@ TEST(doti_nonull, dot4) {
 
     EXPECT_EQ(dot(a, b), -304);
 }
-
-
 
 // Cross
 

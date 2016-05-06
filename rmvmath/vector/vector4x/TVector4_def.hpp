@@ -6,13 +6,43 @@
 #define RMVECTORMATH_TVECTOR4_DEF_HPP
 
 
+#include "../vector3x/TVector3_def.hpp"
+#include "../vector2x/TVector2_def.hpp"
+#include "../affinevector4x/TAffineVector4_def.hpp"
+
 namespace rmmath {
 
     namespace vector {
 
         template<typename T>
         struct TVector4 {
-            T x, y, z, w;
+            union {
+                struct {
+                    T x, y, z, w;
+                };
+
+                TVector3 <T> xyz;
+                TVector2 <T> xy;
+            };
+
+            TVector4(const T x = 0, const T y = 0, const  T z = 0, const T w = 0)
+            : x(x), y(y), z(z), w(w)
+            {
+
+            }
+
+            TVector4(const TVector4<T>& other)
+            : x(other.x), y(other.y), z(other.z), w(other.w)
+            {
+
+            }
+
+            TVector4(const TAffineVector4<T>& other)
+                    : x(other.x), y(other.y), z(other.z), w(1)
+            {
+
+            }
+
         };
 
     }
