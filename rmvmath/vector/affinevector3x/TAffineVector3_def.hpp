@@ -5,6 +5,8 @@
 #ifndef RMVECTORMATH_TAFFINEVECTOR3_DEF_HPP
 #define RMVECTORMATH_TAFFINEVECTOR3_DEF_HPP
 
+#include "../vector2x/TVector2_def.hpp"
+
 namespace rmmath {
 
     namespace vector {
@@ -16,7 +18,27 @@ namespace rmmath {
 
         template<typename T>
         struct TAffineVector3 {
-            T x, y;
+            union {
+                struct {
+                    T x, y;
+                };
+
+                TVector2 <T> xy;
+            };
+
+
+            TAffineVector3(const T x = 0, const T y = 0)
+                    : x(x), y(y)
+            {
+
+            }
+
+            TAffineVector3(const TAffineVector3<T>& other)
+                    : x(other.x), y(other.y)
+            {
+
+            }
+
         };
 
     }

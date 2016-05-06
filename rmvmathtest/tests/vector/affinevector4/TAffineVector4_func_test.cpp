@@ -31,8 +31,6 @@ TEST(affinevector4, constructor) {
 }
 
 
-
-
 // Dot
 
 TEST(affinedoti_nonull, dot4) {
