@@ -6,6 +6,9 @@
 #define RMVECTORMATH_TAFFINEVECTOR4_DEF_HPP
 
 
+#include "../vector3x/TVector3_def.hpp"
+#include "../vector2x/TVector2_def.hpp"
+
 namespace rmmath {
 
     namespace vector {
@@ -16,7 +19,34 @@ namespace rmmath {
 
         template<typename T>
         struct TAffineVector4 {
-            T x, y, z;
+            union {
+                struct {
+                    T x, y, z;
+                };
+
+                TVector3 <T> xyz;
+                TVector2 <T> xy;
+            };
+
+
+            TAffineVector4(const T x = 0, const T y = 0, const  T z = 0)
+                    : x(x), y(y), z(z)
+            {
+
+            }
+
+            TAffineVector4(const TAffineVector4<T>& other)
+                    : x(other.x), y(other.y), z(other.z)
+            {
+
+            }
+
+
+            TAffineVector4(const TVector2<T>& other, const T z)
+                    : x(other.x), y(other.y), z(z)
+            {
+
+            }
         };
 
     }

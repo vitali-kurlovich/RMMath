@@ -8,6 +8,7 @@
 
 #include "../vector3x/TVector3_def.hpp"
 #include "../vector2x/TVector2_def.hpp"
+
 #include "../affinevector4x/TAffineVector4_def.hpp"
 
 namespace rmmath {
