@@ -7,6 +7,10 @@
 
 #include <vector/TVector3.hpp>
 
+#include "../vector2/TVector2_test_types.h"
+
+#include "../affinevector3/TAffineVector3_test_types.h"
+
 using namespace rmmath::vector;
 
 typedef TVector3<int> tvec3i;

@@ -6,6 +6,34 @@
 
 #include "TVector3_test_types.h"
 
+
+TEST(vector3, constructor) {
+    tvec3i a = {3, -8, -98};
+    tvec2i xy = {3, -8};
+
+
+    EXPECT_EQ(a.xy, xy);
+
+    tvec3i zero = {0, 0, 0};
+
+    tvec3i c;
+    EXPECT_EQ(c, zero);
+
+    c = a;
+    EXPECT_EQ(a,c);
+
+    xy = {3, -8};
+    EXPECT_EQ(tvec3i(3,-8,4),tvec3i(xy,4));
+
+    tavec3i affine = {2,3};
+
+    c = affine;
+
+    EXPECT_EQ(c, tvec3i(2,3,1));
+}
+
+
+
 // Dot
 
 TEST(doti_0, dot3) {
@@ -17,6 +45,7 @@ TEST(doti_0, dot3) {
     a = {10, 0, 2};
     b = {0, 3, 0};
     EXPECT_EQ(dot(a, b), 0);
+
 }
 
 

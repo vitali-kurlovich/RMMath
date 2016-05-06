@@ -8,30 +8,6 @@
 #include "../vector3/TVector3_test_types.h"
 
 
-TEST(vector3, constructor) {
-    tvec3i a = {3, -8, -98};
-    tvec2i xy = {3, -8};
-
-
-    EXPECT_EQ(a.xy, xy);
-
-    tvec3i zero = {0, 0, 0};
-
-    tvec3i c;
-    EXPECT_EQ(c, zero);
-
-    c = a;
-    EXPECT_EQ(a,c);
-
-    tavec3i affine = {2,3};
-
-    c = affine;
-
-    EXPECT_EQ(c, tvec3i(2,3,1));
-}
-
-
-
 // Dot
 
 TEST(affinedoti_nonull, dot3) {
