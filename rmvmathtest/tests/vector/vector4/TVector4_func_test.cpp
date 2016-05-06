@@ -20,6 +20,17 @@ TEST(vector4, constructor) {
     tvec4i c;
     EXPECT_EQ(c, zero);
 
+
+
+    xyz = {3, -8, -98};
+    a = tvec4i(xyz, 5);
+
+    EXPECT_EQ(a, tvec4i(3, -8, -98, 5));
+
+    xy = {3, -8};
+    a = tvec4i(xy, 6, 5);
+    EXPECT_EQ(a, tvec4i(3, -8, 6, 5));
+
     c = a;
     EXPECT_EQ(a,c);
 
