@@ -32,13 +32,7 @@ namespace rmmath {
             {
 
             }
-
-            TAffineVector3(const TAffineVector3<T>& other)
-                    : x(other.x), y(other.y)
-            {
-
-            }
-
+            
         };
 
     }

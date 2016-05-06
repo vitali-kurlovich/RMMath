@@ -31,12 +31,6 @@ namespace rmmath {
 
             }
 
-            TVector3(const TVector3<T>& other)
-                    : x(other.x), y(other.y), z(other.z)
-            {
-
-            }
-
             TVector3(const TVector2<T>& other, const T z)
                     : x(other.x), y(other.y), z(z)
             {

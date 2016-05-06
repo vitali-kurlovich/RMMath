@@ -21,11 +21,6 @@ namespace rmmath {
 
             }
 
-            TVector2(const TVector2<T>& other)
-                    : x(other.x), y(other.y)
-            {
-
-            }
 
         };
 

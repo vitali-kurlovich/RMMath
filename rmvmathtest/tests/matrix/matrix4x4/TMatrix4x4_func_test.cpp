@@ -6,7 +6,35 @@
 
 #include "../TMatrix4x4_test_types.h"
 
+TEST(matrix4x4, constructor) {
+    tmat4x4i identity = {
+            1, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 0, 1, 0,
+            0, 0, 0, 1
+    };
 
+    tmat4x4i a;
+
+    EXPECT_EQ(a, identity);
+
+    tmat4x4i num = {
+            1,   2,  3, 4,
+            5,   6,  7, 8,
+            9,  10, 11, 12,
+            13, 14, 15, 16
+    };
+
+    tmat4x4i b(1,   2,  3, 4,
+               5,   6,  7, 8,
+               9,  10, 11, 12,
+               13, 14, 15, 16);
+
+    EXPECT_EQ(num, b);
+
+    tmat4x4i c(num);
+    EXPECT_EQ(c, num);
+}
 
 // Mul
 
