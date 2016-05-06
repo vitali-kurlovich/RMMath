@@ -8,6 +8,31 @@
 #include "TAffineVector4_test_types.h"
 #include "../vector4/TVector4_test_types.h"
 
+
+TEST(affinevector4, constructor) {
+    tavec4i a = {3, -8, -98};
+    tvec3i xyz = {3, -8, -98};
+    tvec2i xy = {3, -8};
+
+    EXPECT_EQ(a.xyz, xyz);
+    EXPECT_EQ(a.xy, xy);
+
+    tavec4i zero = {0, 0, 0};
+
+    tavec4i c;
+    EXPECT_EQ(c, zero);
+
+    xy = {3, -8};
+    a = tavec4i(xy, 6);
+    EXPECT_EQ(a, tavec4i(3, -8, 6));
+
+    c = a;
+    EXPECT_EQ(a,c);
+}
+
+
+
+
 // Dot
 
 TEST(affinedoti_nonull, dot4) {

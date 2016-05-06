@@ -7,7 +7,8 @@
 
 #include <vector/TAffineVector3.hpp>
 
-
+#include "../vector3/TVector3_test_types.h"
+#include "../vector2/TVector2_test_types.h"
 
 using namespace rmmath::vector;
 
