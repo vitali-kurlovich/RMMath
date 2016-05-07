@@ -22,12 +22,7 @@ namespace rmmath {
                     T m20, m21, m22;
                     T m30, m31, m32;
                 };
-                struct {
-                    vector::TVector3<T> row0;
-                    vector::TVector3<T> row1;
-                    vector::TVector3<T> row2;
-                    vector::TVector3<T> row3;
-                };
+                vector::TVector3<T> row[4];
             };
 
             TMatrix4x3(
@@ -47,9 +42,16 @@ namespace rmmath {
                        const vector::TVector3<T>& row1 = vector::TVector3<T>(0, 0, 0),
                        const vector::TVector3<T>& row2 = vector::TVector3<T>(0, 0, 0),
                        const vector::TVector3<T>& row3 = vector::TVector3<T>(0, 0, 0))
-                    : row0(row0), row1(row1),row2(row2),row3(row3)
             {
+                row[0] = row0;
+                row[1] = row1;
+                row[2] = row2;
+                row[3] = row3;
+            }
 
+
+            const vector::TVector3<T>& operator [] (std::size_t index) const {
+                return row[index];
             }
 
             static const TMatrix4x3<T>& zero() {

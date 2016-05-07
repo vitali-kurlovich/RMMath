@@ -47,11 +47,16 @@ TEST(matrix4x4, constructor) {
 
     EXPECT_EQ(num, b);
 
-    EXPECT_EQ(num.row0, tvec4i(1, 2, 3, 4));
-    EXPECT_EQ(num.row1, tvec4i(5, 6, 7, 8));
-    EXPECT_EQ(num.row2, tvec4i(9, 10, 11, 12));
-    EXPECT_EQ(num.row3, tvec4i(13, 14, 15, 16));
+    EXPECT_EQ(num.row[0], tvec4i(1, 2, 3, 4));
+    EXPECT_EQ(num.row[1], tvec4i(5, 6, 7, 8));
+    EXPECT_EQ(num.row[2], tvec4i(9, 10, 11, 12));
+    EXPECT_EQ(num.row[3], tvec4i(13, 14, 15, 16));
 
+
+    EXPECT_EQ(b[0], tvec4i(1, 2, 3, 4));
+    EXPECT_EQ(b[1], tvec4i(5, 6, 7, 8));
+    EXPECT_EQ(b[2], tvec4i(9, 10, 11, 12));
+    EXPECT_EQ(b[3], tvec4i(13, 14, 15, 16));
 
     tmat4x4i d( tvec4i(1, 2, 3, 4), tvec4i(5, 6, 7, 8), tvec4i(9, 10, 11, 12), tvec4i(13, 14, 15, 16));
 
