@@ -29,8 +29,6 @@ TEST(matrix4x4, constructor) {
 
     tmat4x4i a(tmat4x4i::zero());
 
-
-
     EXPECT_EQ(a, zero);
 
     tmat4x4i num = {

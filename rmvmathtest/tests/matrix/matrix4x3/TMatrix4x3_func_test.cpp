@@ -14,6 +14,8 @@ TEST(matrix4x3, constructor) {
             0, 0, 0
     };
 
+    EXPECT_EQ(tmat4x3i::zero(), zero);
+
     tmat4x3i a;
 
     EXPECT_EQ(a, zero);
@@ -41,20 +43,6 @@ TEST(matrix4x3, constructor) {
     EXPECT_EQ(b[1], tvec3i( 4,  5,  6));
     EXPECT_EQ(b[2], tvec3i( 7,  8,  9));
     EXPECT_EQ(b[3], tvec3i(10, 11, 12));
-
-//
-//    tmat4x4i d( tvec4i(1, 2, 3, 4), tvec4i(5, 6, 7, 8), tvec4i(9, 10, 11, 12), tvec4i(13, 14, 15, 16));
-//
-//    EXPECT_EQ(d, num);
-//
-//    tmat4x4i e( tvec4i(1, 2, 3, 4));
-//
-//    tmat4x4i result(1,2,3,4);
-//
-//    EXPECT_EQ(e, result);
-//
-//    tmat4x4i c(num);
-//    EXPECT_EQ(c, num);
 }
 
 
