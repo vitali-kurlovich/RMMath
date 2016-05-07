@@ -8,6 +8,19 @@
 
 #include "../vector4/TVector4_test_types.h"
 
+// []
+TEST(affine_arrayi_op, arr_op4) {
+    tavec4i a = {-30, 20, -4};
+
+
+    EXPECT_EQ(a[0], -30);
+    EXPECT_EQ(a[1], 20);
+    EXPECT_EQ(a[2], -4);
+    EXPECT_EQ(a[3], 1);
+}
+
+
+
 // ==
 
 TEST(equali_op, equal_affineop4) {

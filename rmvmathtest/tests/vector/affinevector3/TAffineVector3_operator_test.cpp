@@ -8,6 +8,17 @@
 
 #include "../vector3/TVector3_test_types.h"
 
+// []
+TEST(affine_arrayi_op, arr_op3) {
+    tavec3i a = {-30, 20};
+
+    EXPECT_EQ(a[0], -30);
+    EXPECT_EQ(a[1], 20);
+    EXPECT_EQ(a[2], 1);
+}
+
+
+
 // ==
 
 TEST(equali_op, equal_affineop3) {

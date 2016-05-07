@@ -51,6 +51,10 @@ namespace rmmath {
 
             }
 
+            const T operator [] (std::size_t index) const {
+                return v[index];
+            }
+
             static const TVector4<T>& zero() {
                 static TVector4<T> zero;
                 return zero;

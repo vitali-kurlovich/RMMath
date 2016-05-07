@@ -6,6 +6,15 @@
 
 #include "TVector3_test_types.h"
 
+// []
+TEST(arrayi_op, arr_op3) {
+    tvec3i a = {-30, 20, -4};
+
+    EXPECT_EQ(a[0], -30);
+    EXPECT_EQ(a[1], 20);
+    EXPECT_EQ(a[2], -4);
+}
+
 // ==
 
 TEST(equali_op, equal_op3) {

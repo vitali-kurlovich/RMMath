@@ -34,6 +34,10 @@ namespace rmmath {
 
             }
 
+            const T operator [] (std::size_t index) const {
+                return index != 2 ? v[index] : 1;
+            }
+
             static const TAffineVector3<T>& zero() {
                 static TAffineVector3<T> zero;
                 return zero;
