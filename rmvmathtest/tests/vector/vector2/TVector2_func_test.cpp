@@ -13,6 +13,8 @@ TEST(vector2, constructor) {
 
     tvec2i zero = {0, 0};
 
+    EXPECT_EQ(tvec2i::zero(), zero);
+
     tvec2i c;
     EXPECT_EQ(c, zero);
 

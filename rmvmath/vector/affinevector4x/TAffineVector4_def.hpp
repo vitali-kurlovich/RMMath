@@ -24,6 +24,7 @@ namespace rmmath {
                     T x, y, z;
                 };
 
+                T v[3];
                 TVector3 <T> xyz;
                 TVector2 <T> xy;
             };
@@ -40,6 +41,11 @@ namespace rmmath {
                     : x(other.x), y(other.y), z(z)
             {
 
+            }
+
+            static const TAffineVector4<T>& zero() {
+                static TAffineVector4<T> zero;
+                return zero;
             }
         };
 

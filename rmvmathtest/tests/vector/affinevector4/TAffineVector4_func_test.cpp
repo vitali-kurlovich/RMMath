@@ -25,6 +25,8 @@ TEST(affinevector4, constructor) {
 
     tavec4i zero = {0, 0, 0};
 
+    EXPECT_EQ(tavec4i::zero(), zero);
+
     tavec4i c;
     EXPECT_EQ(c, zero);
 

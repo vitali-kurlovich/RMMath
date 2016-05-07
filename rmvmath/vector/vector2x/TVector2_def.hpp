@@ -12,8 +12,12 @@ namespace rmmath {
 
         template<typename T>
         struct TVector2 {
-            T x, y;
-
+            union {
+                struct {
+                    T x, y;
+                };
+                T v[2];
+            };
 
             TVector2(const T x = 0, const T y = 0)
                     : x(x), y(y)
@@ -21,6 +25,10 @@ namespace rmmath {
 
             }
 
+            static const TVector2<T>& zero() {
+                static TVector2<T> zero;
+                return zero;
+            }
 
         };
 

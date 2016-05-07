@@ -22,6 +22,7 @@ namespace rmmath {
                     T x, y, z, w;
                 };
 
+                T v[4];
                 TVector3 <T> xyz;
                 TVector2 <T> xy;
             };
@@ -48,6 +49,11 @@ namespace rmmath {
                     : x(other.x), y(other.y), z(other.z), w(1)
             {
 
+            }
+
+            static const TVector4<T>& zero() {
+                static TVector4<T> zero;
+                return zero;
             }
 
         };

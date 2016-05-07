@@ -19,6 +19,8 @@ TEST(affinevector3, constructor) {
 
     tavec3i zero = {0, 0};
 
+    EXPECT_EQ(tavec3i::zero(), zero);
+
     tavec3i c;
     EXPECT_EQ(c, zero);
 
@@ -28,6 +30,8 @@ TEST(affinevector3, constructor) {
     c = a;
     EXPECT_EQ(a,c);
 }
+
+
 
 
 // Dot
