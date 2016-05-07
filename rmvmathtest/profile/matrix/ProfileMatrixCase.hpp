@@ -95,16 +95,6 @@ public:
 
         endProfileCase("Matirx multiplication");
 
-
-
-
-
-
-
-
-
-
-
         beginProfileCase("Inverse 4x4");
 
         a = {
@@ -154,6 +144,37 @@ public:
             b = inverse(b, success);
             b = inverse(b, success);
         }
+        endProfileCase("Inverse 4x4 fails");
+
+
+
+        beginProfileCase("fmt4x4::zero()");
+
+        for (uint32_t i = 0; i < 1000000; ++i) {
+
+            fmt4x4 a(fmt4x4::zero());
+            fmt4x4 b(fmt4x4::zero());
+            fmt4x4 c(fmt4x4::zero());
+            fmt4x4 d(fmt4x4::zero());
+            fmt4x4 f(fmt4x4::zero());
+            fmt4x4 g(fmt4x4::zero());
+        }
+
+        endProfileCase("Inverse 4x4 fails");
+
+
+        beginProfileCase("fmt4x4()");
+
+        for (uint32_t i = 0; i < 1000000; ++i) {
+
+            fmt4x4 a;
+            fmt4x4 b;
+            fmt4x4 c;
+            fmt4x4 d;
+            fmt4x4 f;
+            fmt4x4 g;
+        }
+
         endProfileCase("Inverse 4x4 fails");
     }
 

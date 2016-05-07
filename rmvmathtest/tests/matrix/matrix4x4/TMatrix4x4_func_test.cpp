@@ -6,6 +6,8 @@
 
 #include "../TMatrix4x4_test_types.h"
 
+#include <iostream>
+
 TEST(matrix4x4, constructor) {
     tmat4x4i identity = {
             1, 0, 0, 0,
@@ -14,9 +16,22 @@ TEST(matrix4x4, constructor) {
             0, 0, 0, 1
     };
 
-    tmat4x4i a;
+    EXPECT_EQ(tmat4x4i::identity(), identity);
 
-    EXPECT_EQ(a, identity);
+    tmat4x4i zero = {
+            0, 0, 0, 0,
+            0, 0, 0, 0,
+            0, 0, 0, 0,
+            0, 0, 0, 0
+    };
+
+    EXPECT_EQ(tmat4x4i::zero(), zero);
+
+    tmat4x4i a(tmat4x4i::zero());
+
+
+
+    EXPECT_EQ(a, zero);
 
     tmat4x4i num = {
             1,   2,  3, 4,
@@ -42,14 +57,11 @@ TEST(matrix4x4, constructor) {
 
     EXPECT_EQ(d, num);
 
-    tmat4x4i e( tvec4i(1, 2, 3, 4));
+    tmat4x4i e(tvec4i(1, 2, 3, 4));
 
     tmat4x4i result(1,2,3,4);
 
     EXPECT_EQ(e, result);
-
-
-
 
     tmat4x4i c(num);
     EXPECT_EQ(c, num);

@@ -11,6 +11,8 @@
 #include "matrix/ProfileMatrixCase.hpp"
 #include "ProfileCase.hpp"
 
+#include <types/float.h>
+
 using namespace std;
 
 int  main(int argc, char* argv[]) {
@@ -21,6 +23,8 @@ int  main(int argc, char* argv[]) {
     prof.addProfileCases(mc);
     prof.run();
 
-    //cout << "Profiler has start " << ms.count() << endl;
+
+
+    //cout << "sizeof(fmt4x4): " << sizeof(fmt4x4) << endl;
     return 0;
 }
