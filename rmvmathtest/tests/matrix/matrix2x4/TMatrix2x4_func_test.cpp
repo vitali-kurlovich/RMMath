@@ -7,11 +7,52 @@
 #include "../TMatrix2x4_test_types.h"
 
 
-/*
 
- 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107
+TEST(matrix2x4, constructor) {
 
- */
+    tmat2x4i zero = {
+            0, 0, 0, 0,
+            0, 0, 0, 0
+    };
+
+    EXPECT_EQ(tmat2x4i::zero(), zero);
+
+    tmat2x4i a;
+
+    EXPECT_EQ(a, zero);
+
+    tmat2x4i num = {
+            1,  2,  3, 4,
+            5,  6,  7, 8
+    };
+
+    tmat2x4i b(1,   2,  3, 4,
+               5,   6,  7, 8);
+
+    EXPECT_EQ(num, b);
+
+    EXPECT_EQ(num.row[0], tvec4i(1, 2, 3, 4));
+    EXPECT_EQ(num.row[1], tvec4i(5, 6, 7, 8));
+
+    EXPECT_EQ(b[0], tvec4i(1, 2, 3, 4));
+    EXPECT_EQ(b[1], tvec4i(5, 6, 7, 8));
+
+
+    tmat2x4i d( tvec4i(1, 2, 3, 4), tvec4i(5, 6, 7, 8));
+
+    EXPECT_EQ(d, num);
+
+    tmat2x4i e(tvec4i(1, 2, 3, 4));
+
+    tmat2x4i result(1,2,3,4);
+
+    EXPECT_EQ(e, result);
+
+    tmat2x4i c(num);
+    EXPECT_EQ(c, num);
+}
+
+
 
 // Mul
 
