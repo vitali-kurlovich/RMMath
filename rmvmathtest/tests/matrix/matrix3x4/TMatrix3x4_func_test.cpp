@@ -6,6 +6,59 @@
 
 #include "../TMatrix3x4_test_types.h"
 
+
+TEST(matrix3x4, constructor) {
+
+    tmat3x4i zero = {
+            0, 0, 0, 0,
+            0, 0, 0, 0,
+            0, 0, 0, 0
+    };
+
+    EXPECT_EQ(tmat3x4i::zero(), zero);
+
+    tmat3x4i a;
+
+    EXPECT_EQ(a, zero);
+
+    tmat3x4i num = {
+            1,   2,  3, 4,
+            5,   6,  7, 8,
+            9,  10, 11, 12
+    };
+
+    tmat3x4i b(1,   2,  3, 4,
+               5,   6,  7, 8,
+               9,  10, 11, 12);
+
+    EXPECT_EQ(num, b);
+
+    EXPECT_EQ(num.row[0], tvec4i(1, 2, 3, 4));
+    EXPECT_EQ(num.row[1], tvec4i(5, 6, 7, 8));
+    EXPECT_EQ(num.row[2], tvec4i(9, 10, 11, 12));
+
+    
+    EXPECT_EQ(b[0], tvec4i(1, 2, 3, 4));
+    EXPECT_EQ(b[1], tvec4i(5, 6, 7, 8));
+    EXPECT_EQ(b[2], tvec4i(9, 10, 11, 12));
+
+
+    tmat3x4i d( tvec4i(1, 2, 3, 4), tvec4i(5, 6, 7, 8), tvec4i(9, 10, 11, 12));
+
+    EXPECT_EQ(d, num);
+
+    tmat3x4i e(tvec4i(1, 2, 3, 4));
+
+    tmat3x4i result(1,2,3,4);
+
+    EXPECT_EQ(e, result);
+
+    tmat3x4i c(num);
+    EXPECT_EQ(c, num);
+}
+
+
+
 TEST(multi, matmult3x4x4x4) {
 
     tmat3x4i a = {

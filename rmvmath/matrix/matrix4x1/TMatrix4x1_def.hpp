@@ -15,6 +15,7 @@ namespace rmmath {
 
         struct TMatrix4x1 {
             union {
+                T m[4*1];
                 struct {
                     T m00;
                     T m10;
