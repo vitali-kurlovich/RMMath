@@ -35,8 +35,6 @@ TEST(matrix2x1, constructor) {
     EXPECT_EQ(b[1], 2);
 }
 
-
-
 // Mul
 
 TEST(multi, matmult2x1x1x4) {

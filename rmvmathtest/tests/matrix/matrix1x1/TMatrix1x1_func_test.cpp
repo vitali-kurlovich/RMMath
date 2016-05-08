@@ -6,9 +6,37 @@
 
 #include "../TMatrix1x1_test_types.h"
 
+TEST(matrix1x1, constructor) {
+    tmat1x1i zero = {
+            0
+    };
+
+    EXPECT_EQ(tmat1x1i::zero(), zero);
+
+    tmat1x1i a;
+
+    EXPECT_EQ(a, zero);
+
+    tmat1x1i identity = {
+            1
+    };
+
+    EXPECT_EQ(tmat1x1i::identity(), identity);
+
+    tmat1x1i num = {
+            1
+    };
+
+    tmat1x1i b(1);
+
+    EXPECT_EQ(num, b);
+
+    EXPECT_EQ(num.row[0], 1);
+    EXPECT_EQ(b[0], 1);
+}
+
 
 // Mul
-
 
 TEST(multi, matmult1x1x1x4) {
     tmat1x1i a = {
