@@ -36,13 +36,10 @@ TEST(matrix3x1, constructor) {
     EXPECT_EQ(num.row[1], 2);
     EXPECT_EQ(num.row[2], 3);
 
-
     EXPECT_EQ(b[0], 1);
     EXPECT_EQ(b[1], 2);
     EXPECT_EQ(b[2], 3);
-
 }
-
 
 
 // Mul
