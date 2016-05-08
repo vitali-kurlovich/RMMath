@@ -6,6 +6,45 @@
 
 #include "../TMatrix3x1_test_types.h"
 
+
+TEST(matrix3x1, constructor) {
+    tmat3x1i zero = {
+            0,
+            0,
+            0
+    };
+
+    EXPECT_EQ(tmat3x1i::zero(), zero);
+
+    tmat3x1i a;
+
+    EXPECT_EQ(a, zero);
+
+    tmat3x1i num = {
+            1,
+            2,
+            3
+    };
+
+    tmat3x1i b(1,
+               2,
+               3);
+
+    EXPECT_EQ(num, b);
+
+    EXPECT_EQ(num.row[0], 1);
+    EXPECT_EQ(num.row[1], 2);
+    EXPECT_EQ(num.row[2], 3);
+
+
+    EXPECT_EQ(b[0], 1);
+    EXPECT_EQ(b[1], 2);
+    EXPECT_EQ(b[2], 3);
+
+}
+
+
+
 // Mul
 
 TEST(multi, matmult3x1x1x4) {
