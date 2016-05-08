@@ -15,7 +15,10 @@
 #include <matrix/TMatrix2x3.hpp>
 #include <matrix/TMatrix2x1.hpp>
 
+#include <vector/TVector2.hpp>
+
 using namespace rmmath::matrix;
+using namespace rmmath::vector;
 
 typedef TMatrix1x4<int> tmat1x4i;
 typedef TMatrix1x4<float> tmat1x4f;
@@ -49,5 +52,9 @@ typedef TMatrix2x2<double> tmat2x2d;
 typedef TMatrix2x1<int> tmat2x1i;
 typedef TMatrix2x1<float> tmat2x1f;
 typedef TMatrix2x1<double> tmat2x1d;
+
+typedef TVector2<int> tvec2i;
+typedef TVector2<float> tvec2f;
+typedef TVector2<double> tvec2d;
 
 #endif //RMVECTORMATH_TMATRIX1X2_TEST_TYPES_H

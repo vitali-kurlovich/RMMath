@@ -34,7 +34,6 @@ typedef TMatrix2x1<float> tmat2x1f;
 typedef TMatrix2x1<double> tmat2x1d;
 
 
-
 typedef TVector2<int> tvec2i;
 typedef TVector2<float> tvec2f;
 typedef TVector2<double> tvec2d;

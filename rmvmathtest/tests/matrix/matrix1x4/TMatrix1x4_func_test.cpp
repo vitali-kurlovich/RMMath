@@ -6,17 +6,48 @@
 
 #include "../TMatrix1x4_test_types.h"
 
+TEST(matrix1x4, constructor) {
 
-/*
+    tmat1x4i zero = {
+            0, 0, 0, 0
+    };
 
- 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107
+    EXPECT_EQ(tmat1x4i::zero(), zero);
 
- */
+    tmat1x4i a;
+
+    EXPECT_EQ(a, zero);
+
+    tmat1x4i num = {
+            1,  2,  3, 4
+    };
+
+    tmat1x4i b(1, 2, 3, 4);
+
+    EXPECT_EQ(num, b);
+
+    EXPECT_EQ(num.row[0], tvec4i(1, 2, 3, 4));
+
+    EXPECT_EQ(b[0], tvec4i(1, 2, 3, 4));
+
+
+    tmat1x4i d( tvec4i(1, 2, 3, 4));
+
+    EXPECT_EQ(d, num);
+
+    tmat1x4i e(tvec4i(1, 2, 3, 4));
+
+    tmat1x4i result(1,2,3,4);
+
+    EXPECT_EQ(e, result);
+
+    tmat1x4i c(num);
+    EXPECT_EQ(c, num);
+}
 
 
 
 // Mul
-
 
 TEST(multi, matmult1x4x4x4) {
     tmat1x4i a = {

@@ -6,8 +6,49 @@
 
 #include "../TMatrix1x3_test_types.h"
 
-// Mul
 
+TEST(matrix1x3, constructor) {
+
+    tmat1x3i zero = {
+            0, 0, 0
+    };
+
+    EXPECT_EQ(tmat1x3i::zero(), zero);
+
+    tmat1x3i a;
+
+    EXPECT_EQ(a, zero);
+
+    tmat1x3i num = {
+            1,  2,  3
+    };
+
+    tmat1x3i b(1, 2, 3);
+
+    EXPECT_EQ(num, b);
+
+    EXPECT_EQ(num.row[0], tvec3i(1, 2, 3));
+
+    EXPECT_EQ(b[0], tvec3i(1, 2, 3));
+
+
+    tmat1x3i d( tvec3i(1, 2, 3));
+
+    EXPECT_EQ(d, num);
+
+    tmat1x3i e(tvec3i(1, 2, 3));
+
+    tmat1x3i result(1,2,3);
+
+    EXPECT_EQ(e, result);
+
+    tmat1x3i c(num);
+    EXPECT_EQ(c, num);
+}
+
+
+
+// Mul
 
 TEST(multi, matmult1x3x3x4) {
     tmat1x3i a = {
