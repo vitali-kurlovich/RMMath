@@ -37,7 +37,7 @@ TEST(matrix3x4, constructor) {
     EXPECT_EQ(num.row[1], tvec4i(5, 6, 7, 8));
     EXPECT_EQ(num.row[2], tvec4i(9, 10, 11, 12));
 
-    
+
     EXPECT_EQ(b[0], tvec4i(1, 2, 3, 4));
     EXPECT_EQ(b[1], tvec4i(5, 6, 7, 8));
     EXPECT_EQ(b[2], tvec4i(9, 10, 11, 12));
