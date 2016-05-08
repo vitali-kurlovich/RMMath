@@ -7,6 +7,55 @@
 #include "../TMatrix2x2_test_types.h"
 
 
+TEST(matrix2x2, constructor) {
+    tmat2x2i identity = {
+            1, 0,
+            0, 1
+    };
+
+    EXPECT_EQ(tmat2x2i::identity(), identity);
+
+    tmat2x2i zero = {
+            0, 0,
+            0, 0
+
+    };
+
+    EXPECT_EQ(tmat2x2i::zero(), zero);
+
+    tmat2x2i a;
+
+    EXPECT_EQ(a, zero);
+
+    tmat2x2i num = {
+            1,  2,
+            3,  4
+    };
+
+    tmat2x2i b(1, 2,
+               3, 4);
+
+    EXPECT_EQ(num, b);
+
+    EXPECT_EQ(num.row[0], tvec2i(1, 2));
+    EXPECT_EQ(num.row[1], tvec2i(3, 4));
+
+    EXPECT_EQ(b[0], tvec2i(1, 2));
+    EXPECT_EQ(b[1], tvec2i(3, 4));
+
+    tmat2x2i d( tvec2i(1, 2), tvec2i(3, 4));
+
+    EXPECT_EQ(d, num);
+
+    tmat2x2i e(tvec2i(1, 2));
+    tmat2x2i result(1,2);
+
+    EXPECT_EQ(e, result);
+
+    tmat2x2i c(num);
+    EXPECT_EQ(c, num);
+}
+
 // Mul
 
 

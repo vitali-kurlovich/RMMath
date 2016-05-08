@@ -26,8 +26,6 @@ namespace rmmath {
                 vector::TVector3<T> row[3];
             };
 
-
-
             TMatrix3x3(
                     const T m00 = 0, const T m01 = 0, const T m02 = 0,
                     const T m10 = 0, const T m11 = 0, const T m12 = 0,

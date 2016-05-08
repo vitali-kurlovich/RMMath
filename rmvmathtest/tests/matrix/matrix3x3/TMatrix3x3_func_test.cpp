@@ -65,9 +65,6 @@ TEST(matrix3x3, constructor) {
     EXPECT_EQ(c, num);
 }
 
-
-
-
 // Mul
 
 TEST(multi, matmult3x3x3x4) {
