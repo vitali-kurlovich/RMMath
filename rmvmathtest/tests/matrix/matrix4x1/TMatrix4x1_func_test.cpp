@@ -6,6 +6,47 @@
 
 #include "../TMatrix4x1_test_types.h"
 
+
+TEST(matrix4x1, constructor) {
+    tmat4x1i zero = {
+            0,
+            0,
+            0,
+            0
+    };
+
+    EXPECT_EQ(tmat4x1i::zero(), zero);
+
+    tmat4x1i a;
+
+    EXPECT_EQ(a, zero);
+
+    tmat4x1i num = {
+            1,
+            2,
+            3,
+            4
+    };
+
+    tmat4x1i b(1,
+               2,
+               3,
+               4);
+
+    EXPECT_EQ(num, b);
+
+    EXPECT_EQ(num.row[0], 1);
+    EXPECT_EQ(num.row[1], 2);
+    EXPECT_EQ(num.row[2], 3);
+    EXPECT_EQ(num.row[3], 4);
+
+    EXPECT_EQ(b[0], 1);
+    EXPECT_EQ(b[1], 2);
+    EXPECT_EQ(b[2], 3);
+    EXPECT_EQ(b[3], 4);
+}
+
+
 // Mul
 
 TEST(multi, matmult4x1x1x4) {
