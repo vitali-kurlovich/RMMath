@@ -18,6 +18,7 @@
 #include <matrix/TMatrix1x4.hpp>
 
 #include <vector/TVector4.hpp>
+#include <vector/TVector3.hpp>
 
 using namespace rmmath;
 using namespace rmmath::matrix;
@@ -59,5 +60,9 @@ typedef TMatrix1x4<double> tmat1x4d;
 typedef TVector4<int> tvec4i;
 typedef TVector4<float> tvec4f;
 typedef TVector4<double> tvec4d;
+
+typedef TVector3<int> tvec3i;
+typedef TVector3<float> tvec3f;
+typedef TVector3<double> tvec3d;
 
 #endif //RMVECTORMATH_TAFFINEMATRIX4X4_TEST_TYPES_H

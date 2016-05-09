@@ -7,6 +7,71 @@
 #include "../TAffineMatrix4x4_test_types.h"
 #include "../../vector/affinevector4/TAffineVector4_test_types.h"
 
+
+TEST(affinematrix4x4, constructor) {
+    tamat4x4i identity = {
+            1, 0, 0,
+            0, 1, 0,
+            0, 0, 1,
+            0, 0, 0
+    };
+
+    EXPECT_EQ(tamat4x4i::identity(), identity);
+
+    tamat4x4i zero = {
+            0, 0, 0,
+            0, 0, 0,
+            0, 0, 0,
+            0, 0, 0
+    };
+
+    EXPECT_EQ(tamat4x4i::zero(), zero);
+
+    tamat4x4i a;
+    EXPECT_EQ(a, zero);
+
+    tamat4x4i num = {
+             1,  2,  3,
+             4,  5,  6,
+             7,  8,  9,
+            10, 11, 12
+    };
+
+    tamat4x4i b(1,  2,  3,
+                4,  5,  6,
+                7,  8,  9,
+                10, 11, 12);
+
+    EXPECT_EQ(num, b);
+
+    EXPECT_EQ(num.row[0], tvec3i(1, 2, 3));
+    EXPECT_EQ(num.row[1], tvec3i(4, 5, 6));
+    EXPECT_EQ(num.row[2], tvec3i(7, 8, 9));
+    EXPECT_EQ(num.row[3], tvec3i(10, 11, 12));
+
+
+
+    EXPECT_EQ(b[0], tvec3i(1, 2, 3));
+    EXPECT_EQ(b[1], tvec3i(4, 5, 6));
+    EXPECT_EQ(b[2], tvec3i(7, 8, 9));
+    EXPECT_EQ(b[3], tvec3i(10, 11, 12));
+
+    tamat4x4i d( tvec3i(1, 2, 3), tvec3i(4, 5, 6), tvec3i(7, 8, 9), tvec3i(10, 11, 12));
+
+    EXPECT_EQ(d, num);
+
+    tamat4x4i e(tvec3i(1, 2, 3));
+
+    tamat4x4i result(1, 2, 3);
+
+    EXPECT_EQ(e, result);
+
+    tamat4x4i c(num);
+    EXPECT_EQ(c, num);
+    
+}
+
+
 // Mul
 
 TEST(multi, matmulta4x4xa4x4) {
