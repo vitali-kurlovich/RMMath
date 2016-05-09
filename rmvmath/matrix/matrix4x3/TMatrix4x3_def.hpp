@@ -39,9 +39,9 @@ namespace rmmath {
             }
 
             TMatrix4x3(const vector::TVector3<T>& row0,
-                       const vector::TVector3<T>& row1 = vector::TVector3<T>(0, 0, 0),
-                       const vector::TVector3<T>& row2 = vector::TVector3<T>(0, 0, 0),
-                       const vector::TVector3<T>& row3 = vector::TVector3<T>(0, 0, 0))
+                       const vector::TVector3<T>& row1 = vector::TVector3<T>::zero(),
+                       const vector::TVector3<T>& row2 = vector::TVector3<T>::zero(),
+                       const vector::TVector3<T>& row3 = vector::TVector3<T>::zero())
             {
                 row[0] = row0;
                 row[1] = row1;

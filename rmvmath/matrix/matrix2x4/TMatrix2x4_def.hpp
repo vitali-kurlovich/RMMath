@@ -33,7 +33,7 @@ namespace rmmath {
             }
 
             TMatrix2x4(const vector::TVector4<T>& row0,
-                       const vector::TVector4<T>& row1 = vector::TVector4<T>(0, 0, 0, 0))
+                       const vector::TVector4<T>& row1 = vector::TVector4<T>::zero())
             {
                 row[0] = row0;
                 row[1] = row1;
