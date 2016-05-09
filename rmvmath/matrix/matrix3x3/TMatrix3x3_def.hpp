@@ -40,10 +40,9 @@ namespace rmmath {
             TMatrix3x3(const vector::TVector3<T>& row0,
                        const vector::TVector3<T>& row1 = vector::TVector3<T>::zero(),
                        const vector::TVector3<T>& row2 = vector::TVector3<T>::zero())
+                    : row{row0, row1, row2}
             {
-                row[0] = row0;
-                row[1] = row1;
-                row[2] = row2;
+
             }
 
             const vector::TVector3<T>& operator [] (std::size_t index) const {

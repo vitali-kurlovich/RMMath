@@ -29,8 +29,9 @@ namespace rmmath {
             }
 
             TMatrix1x2(const vector::TVector2<T>& row0)
+                    : row{row0}
             {
-                row[0] = row0;
+
             }
 
             const vector::TVector2<T>& operator [] (std::size_t index) const {

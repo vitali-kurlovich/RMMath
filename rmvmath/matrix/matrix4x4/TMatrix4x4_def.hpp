@@ -42,11 +42,9 @@ namespace rmmath {
                        const vector::TVector4<T>& row1 = vector::TVector4<T>::zero(),
                        const vector::TVector4<T>& row2 = vector::TVector4<T>::zero(),
                        const vector::TVector4<T>& row3 = vector::TVector4<T>::zero())
+            : row{row0, row1, row2, row3}
             {
-                row[0] = row0;
-                row[1] = row1;
-                row[2] = row2;
-                row[3] = row3;
+
             }
 
             const vector::TVector4<T>& operator [] (std::size_t index) const {
