@@ -39,12 +39,6 @@ namespace rmmath {
             TQuaternion( const vector::TVector3<T>& vec, const T w = 0 )
                     : w(w), x(vec.x), y(vec.y), z(vec.z)
             {}
-
-
-            TQuaternion( const TQuaternion& other )
-                    :  w(other.w), x(other.x), y(other.y), z(other.z)
-            {}
-
         };
     }
 }
