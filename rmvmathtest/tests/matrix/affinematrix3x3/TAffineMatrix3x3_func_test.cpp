@@ -8,6 +8,45 @@
 #include "../../vector/affinevector3/TAffineVector3_test_types.h"
 
 
+TEST(affinematrix3x3, constructor) {
+    tamat3x3i zero = {
+            0, 0,
+            0, 0,
+            0, 0
+    };
+
+    EXPECT_EQ(tamat3x3i::zero(), zero);
+
+    tamat3x3i a;
+
+    EXPECT_EQ(a, zero);
+
+    tamat3x3i num = {
+            1,  2,
+            3,  4,
+            5,  6
+    };
+
+    tamat3x3i b(1,  2,
+               3,  4,
+               5,  6);
+
+    EXPECT_EQ(num, b);
+
+    EXPECT_EQ(num.row[0], tvec2i( 1,  2));
+    EXPECT_EQ(num.row[1], tvec2i( 3,  4));
+    EXPECT_EQ(num.row[2], tvec2i( 5,  6));
+
+
+    EXPECT_EQ(b[0], tvec2i( 1,  2));
+    EXPECT_EQ(b[1], tvec2i( 3,  4));
+    EXPECT_EQ(b[2], tvec2i( 5,  6));
+
+}
+
+
+
+
 // Mul
 
 TEST(multi, matmulta3x3xa3x3) {

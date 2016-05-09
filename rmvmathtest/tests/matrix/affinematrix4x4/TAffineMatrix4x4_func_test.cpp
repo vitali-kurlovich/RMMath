@@ -68,7 +68,7 @@ TEST(affinematrix4x4, constructor) {
 
     tamat4x4i c(num);
     EXPECT_EQ(c, num);
-    
+
 }
 
 

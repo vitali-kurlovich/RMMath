@@ -17,8 +17,8 @@
 #include <matrix/TMatrix2x3.hpp>
 #include <matrix/TMatrix1x3.hpp>
 
-
 #include <vector/TVector3.hpp>
+#include <vector/TVector2.hpp>
 
 using namespace rmmath;
 using namespace rmmath::matrix;
@@ -62,5 +62,9 @@ typedef TMatrix1x3<double> tmat1x3d;
 typedef TVector3<int> tvec3i;
 typedef TVector3<float> tvec3f;
 typedef TVector3<double> tvec3d;
+
+typedef TVector2<int> tvec2i;
+typedef TVector2<float> tvec2f;
+typedef TVector2<double> tvec2d;
 
 #endif //RMVECTORMATH_TAFFINEMATRIX3X3_TEST_TYPES_H
