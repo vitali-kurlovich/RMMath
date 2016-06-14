@@ -11,11 +11,11 @@
 
 namespace rmmath {
 
-    namespace quaternion {
+    namespace complex {
 
         template<typename T>
         inline bool operator == (const TQuaternion<T> &a, const TQuaternion<T> &b) {
-            return &a == &b || (a.w == b.w && a.x == b.x && a.y == b.y && a.z == b.z);
+            return &a == &b || (a.w == b.w && a.i == b.i && a.j == b.j && a.k == b.k);
         }
 
         template<typename T>

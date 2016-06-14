@@ -6,11 +6,11 @@
 #define RMVECTORMATH_TQUATERNION_TEST_TYPES_H
 
 
-#include <quaternion/TQuaternion.hpp>
+#include <complex/TQuaternion.hpp>
 #include "../vector/vector3/TVector3_test_types.h"
 
 using namespace rmmath;
-using namespace rmmath::quaternion;
+using namespace rmmath::complex;
 
 typedef TQuaternion<int> tqti;
 typedef TQuaternion<float> tqtf;

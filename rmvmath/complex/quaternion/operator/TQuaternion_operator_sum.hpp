@@ -10,7 +10,7 @@
 
 namespace rmmath {
 
-    namespace quaternion {
+    namespace complex {
 
         template<typename T>
         inline TQuaternion<T> operator + (const TQuaternion<T> &a, const TQuaternion<T> &b) {

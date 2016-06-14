@@ -4,7 +4,7 @@
 
 #include "gtest/gtest.h"
 
-#include "TQuaternion_test_types.h"
+#include "../TQuaternion_test_types.h"
 
 // ==
 

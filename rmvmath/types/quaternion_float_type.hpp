@@ -6,10 +6,10 @@
 #define RMVECTORMATH_QUATERNION_FLOAT_TYPE_HPP
 
 
-#include "../quaternion/TQuaternion.hpp"
+#include "../complex/TQuaternion.hpp"
 
 namespace rmmath {
-    typedef quaternion::TQuaternion<float> fquat;
+    typedef complex::TQuaternion<float> fquat;
 }
 
 #endif //RMVECTORMATH_QUATERNION_FLOAT_TYPE_HPP
