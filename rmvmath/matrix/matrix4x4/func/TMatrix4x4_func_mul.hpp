@@ -23,13 +23,13 @@ namespace rmmath {
     namespace matrix {
 
         template<typename T>
-        constexpr TMatrix4x4 <T> mul(const TMatrix4x4 <T> &a, const TMatrix4x4 <T> &b) noexcept {
+         const TMatrix4x4 <T> mul(const TMatrix4x4 <T> &a, const TMatrix4x4 <T> &b) noexcept {
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(64)
             RM_STAT_SUM(48)
 #endif
 
-            TMatrix4x4<T> c(
+            return TMatrix4x4<T> (
             a.m00 * b.m00 + a.m01 * b.m10 + a.m02 * b.m20 + a.m03 * b.m30,
             a.m00 * b.m01 + a.m01 * b.m11 + a.m02 * b.m21 + a.m03 * b.m31,
             a.m00 * b.m02 + a.m01 * b.m12 + a.m02 * b.m22 + a.m03 * b.m32,
@@ -50,7 +50,7 @@ namespace rmmath {
             a.m30 * b.m02 + a.m31 * b.m12 + a.m32 * b.m22 + a.m33 * b.m32,
             a.m30 * b.m03 + a.m31 * b.m13 + a.m32 * b.m23 + a.m33 * b.m33);
 
-            return c;
+           // return c;
 
 
             /*

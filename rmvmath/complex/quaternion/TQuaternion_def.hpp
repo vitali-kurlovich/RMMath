@@ -28,23 +28,25 @@ namespace rmmath {
                 };
             };
 
-            TQuaternion( const T w = 0, const T i = 0, const T j = 0, const T k = 0 )
+            constexpr
+            TQuaternion( const T w = 0, const T i = 0, const T j = 0, const T k = 0 ) noexcept
                     : w(w), i(i), j(j), k(k)
             {}
 
-            TQuaternion( const T w, const vector::TVector3<T>& vec )
+            constexpr
+            TQuaternion( const T w, const vector::TVector3<T>& vec )  noexcept
                     : re(w), im(vec)
             {}
 
-            TQuaternion( const vector::TVector3<T>& vec, const T w = 0 )
+            constexpr
+            TQuaternion( const vector::TVector3<T>& vec, const T w = 0 ) noexcept
                     : re(w), im(vec)
             {}
 
-            TQuaternion(const TIdentityQuaternion<T>& iquat)
+            constexpr
+            TQuaternion(const TIdentityQuaternion<T>& iquat) noexcept
             :re(iquat.re), im(iquat.im)
-            {
-
-            }
+            {}
 
             static const TQuaternion<T>& zero() {
                 static TQuaternion<T> zero;

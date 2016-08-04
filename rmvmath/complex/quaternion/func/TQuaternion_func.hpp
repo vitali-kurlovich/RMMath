@@ -17,7 +17,7 @@ namespace rmmath {
     namespace complex {
 
         template<typename T>
-        inline TQuaternion <T> mul(const TQuaternion <T> &a, const TQuaternion <T> &b) {
+        inline TQuaternion <T> mul(const TQuaternion <T> &a, const TQuaternion <T> &b) noexcept {
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(16)
             RM_STAT_SUM(6)
@@ -30,7 +30,7 @@ namespace rmmath {
         }
 
         template<typename T>
-        inline TQuaternion <T> mul(const TQuaternion <T> &a, const T b) {
+        inline TQuaternion <T> mul(const TQuaternion <T> &a, const T b) noexcept {
 
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(4)
@@ -39,13 +39,13 @@ namespace rmmath {
         }
 
         template<typename T>
-        inline TQuaternion <T> mul(const T b, const TQuaternion <T> &a) {
+        inline TQuaternion <T> mul(const T b, const TQuaternion <T> &a) noexcept {
             return mul(a, b);
         }
 
 
         template<typename T>
-        inline TQuaternion <T> div(const TQuaternion <T> &a, const TQuaternion <T> &b) {
+        inline TQuaternion <T> div(const TQuaternion <T> &a, const TQuaternion <T> &b) noexcept {
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(24)
             RM_STAT_DIV(1)
@@ -61,18 +61,18 @@ namespace rmmath {
 
 
         template<typename T>
-        inline TQuaternion <T> div(const TQuaternion <T> &a, const T b) {
+        inline TQuaternion <T> div(const TQuaternion <T> &a, const T b) noexcept {
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(4)
             RM_STAT_DIV(1)
 #endif
             auto invb = 1 / b;
-            return TQuaternion<T>(a.w * invb, a.i * invb, a.j * invb, a.k * invb);;
+            return TQuaternion<T>(a.w * invb, a.i * invb, a.j * invb, a.k * invb);
         }
 
 
         template<typename T>
-        inline TQuaternion <T> div(const T a, const TQuaternion <T> &b) {
+        inline TQuaternion <T> div(const T a, const TQuaternion <T> &b) noexcept {
 
             auto sinvnorm = a / (b.w * b.w + b.i * b.i + b.j * b.j + b.k * b.k);
             TQuaternion<T> c = {b.w * sinvnorm, -b.i * sinvnorm, -b.j * sinvnorm, -b.k * sinvnorm};
@@ -85,7 +85,7 @@ namespace rmmath {
 
 
         template<typename T>
-        inline TQuaternion <T> sum(const TQuaternion <T> &a, const TQuaternion <T> &b) {
+        inline TQuaternion <T> sum(const TQuaternion <T> &a, const TQuaternion <T> &b) noexcept {
 #ifdef RM_MATH_STAT
             RM_STAT_SUM(4)
 #endif
@@ -93,7 +93,7 @@ namespace rmmath {
         }
 
         template<typename T>
-        inline TQuaternion <T> sum(const TQuaternion <T> &a, const T b) {
+        inline TQuaternion <T> sum(const TQuaternion <T> &a, const T b) noexcept {
 
 #ifdef RM_MATH_STAT
             RM_STAT_SUM(1)
@@ -103,13 +103,13 @@ namespace rmmath {
 
 
         template<typename T>
-        inline TQuaternion <T> sum(const T a, const TQuaternion <T> &b) {
+        inline TQuaternion <T> sum(const T a, const TQuaternion <T> &b) noexcept {
             return sum(b, a);
         }
 
 
         template<typename T>
-        inline TQuaternion <T> sub(const TQuaternion <T> &a, const TQuaternion <T> &b) {
+        inline TQuaternion <T> sub(const TQuaternion <T> &a, const TQuaternion <T> &b) noexcept {
             TQuaternion<T> c = {
                     a.w - b.w, a.i - b.i, a.j - b.j, a.k - b.k
             };
@@ -121,7 +121,7 @@ namespace rmmath {
 
 
         template<typename T>
-        inline TQuaternion <T> sub(const TQuaternion <T> &a, const T b) {
+        inline TQuaternion <T> sub(const TQuaternion <T> &a, const T b) noexcept {
             TQuaternion<T> c = {a.w - b, a.i, a.j, a.k};
 #ifdef RM_MATH_STAT
             RM_STAT_SUB(1)
@@ -130,7 +130,7 @@ namespace rmmath {
         }
 
         template<typename T>
-        inline TQuaternion <T> sub(const T a, const TQuaternion <T> &b) {
+        inline TQuaternion <T> sub(const T a, const TQuaternion <T> &b) noexcept {
             TQuaternion<T> c = {a - b.w, -b.i, -b.j, -b.k};
 #ifdef RM_MATH_STAT
             RM_STAT_SUB(1)
@@ -140,13 +140,13 @@ namespace rmmath {
 
 
         template<typename T>
-        inline TQuaternion <T> conjugate(const TQuaternion <T> &a) {
+        inline TQuaternion <T> conjugate(const TQuaternion <T> &a) noexcept {
             TQuaternion<T> c = {a.w, -a.i, -a.j, -a.k};
             return c;
         }
 
         template<typename T>
-        inline T norm(const TQuaternion <T> &a) {
+        inline T norm(const TQuaternion <T> &a) noexcept {
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(4)
             RM_STAT_SUM(3)
@@ -156,7 +156,7 @@ namespace rmmath {
 
 
         template<typename T>
-        inline TQuaternion <T> inverse(const TQuaternion <T> &a) {
+        inline TQuaternion <T> inverse(const TQuaternion <T> &a) noexcept {
             auto invnorm = 1 / norm(a);
             TQuaternion<T> c = {a.w * invnorm, -a.i * invnorm, -a.j * invnorm, -a.k * invnorm};
 #ifdef RM_MATH_STAT
