@@ -94,6 +94,7 @@ add_executable(runBasicMathTests
         complex/iquaternion/TIdentityQuaternion_func_test.cpp
 
         transform/TTransformTest.cpp
+        math/TMathTest.cpp
 
         )
 
