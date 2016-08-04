@@ -6,6 +6,8 @@
 #define RMVECTORMATH_TAFFINEMATRIX4X4_DEF_HPP
 
 #include "../../vector/vector3x/TVector3_def.hpp"
+#include "../TMatrix3x3.hpp"
+#include "../../vector/TAffineVector4.hpp"
 
 namespace rmmath {
 
@@ -28,9 +30,14 @@ namespace rmmath {
                     T m20, m21, m22;
                     T m30, m31, m32;
                 };
+
+                struct {
+                    TMatrix3x3<T> rotation;
+                    vector::TAffineVector4<T> translate;
+                };
+
                 vector::TVector3<T> row[4];
             };
-
 
             TAffineMatrix4x4(
                     const T m00 = 0, const T m01 = 0, const T m02 = 0,

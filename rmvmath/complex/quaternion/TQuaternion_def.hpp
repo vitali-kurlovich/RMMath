@@ -6,7 +6,8 @@
 #define RMVECTORMATH_TQUATERNION_DEF_HPP
 
 
-#include "vector/vector3x/TVector3_def.hpp"
+#include "vector/TVector3.hpp"
+#include "vector/TVector4.hpp"
 
 #include "../iquaternion/TIdentityQuaternion_def.hpp"
 
@@ -24,8 +25,10 @@ namespace rmmath {
 
                 struct {
                      T re;
-                     vector::TVector3 <T> im;
+                     vector::TVector3<T> im;
                 };
+
+                vector::TVector4<T> wijk;
             };
 
             constexpr
@@ -51,6 +54,12 @@ namespace rmmath {
             static const TQuaternion<T>& zero() {
                 static TQuaternion<T> zero;
                 return zero;
+            }
+
+
+            static const TQuaternion<T>& identity() {
+                static TQuaternion<T> identity(0, 1, 0, 0);
+                return identity;
             }
         };
     }
