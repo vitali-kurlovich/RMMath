@@ -10,7 +10,6 @@
 #include <types/float.h>
 
 
-
 using namespace rmmath;
 using namespace rmmath::matrix;
 
@@ -52,8 +51,8 @@ public:
 
         for (uint32_t i = 0; i < 1000000; ++i) {
 
-            auto d = a*b*c*a*b*c;
-            auto e = d*c*a;
+             auto d = a*b*c*a*b*c;
+             auto e = d*c*a;
             e*=d;
             d = a*e;
             e = b*c;
@@ -84,13 +83,14 @@ public:
                 113.f, 114.f, 115.f
         };
 
-        for (uint32_t i = 0; i < 1000000; ++i) {
+        auto ad = aa*ab*ac*aa*ab*ac;
 
-            auto ad = aa*ab*ac*aa*ab*ac;
+        for (uint32_t i = 0; i < 1000000; ++i) {
+            ad = aa*ab*ac*aa*ab*ac;
             auto ae = ad*ac*aa;
             ae*=ad;
-            ad = aa*ae;
             ae = ab*ac;
+            ad = aa*ae;
         }
 
         endProfileCase("Matirx multiplication");
@@ -160,7 +160,7 @@ public:
             fmt4x4 g(fmt4x4::zero());
         }
 
-        endProfileCase("Inverse 4x4 fails");
+        endProfileCase("fmt4x4::zero()");
 
 
         beginProfileCase("fmt4x4()");
@@ -175,7 +175,7 @@ public:
             fmt4x4 g;
         }
 
-        endProfileCase("Inverse 4x4 fails");
+        endProfileCase("fmt4x4()");
     }
 
 };

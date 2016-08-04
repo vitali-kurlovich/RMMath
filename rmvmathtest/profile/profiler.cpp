@@ -17,17 +17,11 @@ using namespace std;
 
 int  main(int argc, char* argv[]) {
 
-
-    
-
-
     profiler::Profiler prof;
 
     ProfileMatrixCase* mc = new ProfileMatrixCase(&prof);
     prof.addProfileCases(mc);
     prof.run();
-
-
 
     //cout << "sizeof(fmt4x4): " << sizeof(fmt4x4) << endl;
     return 0;

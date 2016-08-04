@@ -13,7 +13,7 @@ namespace rmmath {
     namespace matrix {
 
         template<typename T>
-        inline bool operator==(const TMatrix4x4 <T> &a, const TMatrix4x4 <T> &b) {
+        inline bool operator == (const TMatrix4x4 <T> &a, const TMatrix4x4 <T> &b) {
             return &a == &b ||
                    (a.m00 == b.m00 &&
                     a.m01 == b.m01 &&

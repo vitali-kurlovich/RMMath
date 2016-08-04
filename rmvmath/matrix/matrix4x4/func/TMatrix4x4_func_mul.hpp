@@ -23,7 +23,39 @@ namespace rmmath {
     namespace matrix {
 
         template<typename T>
-        inline TMatrix4x4 <T> mul(const TMatrix4x4 <T> &a, const TMatrix4x4 <T> &b) {
+        constexpr TMatrix4x4 <T> mul(const TMatrix4x4 <T> &a, const TMatrix4x4 <T> &b) noexcept {
+#ifdef RM_MATH_STAT
+            RM_STAT_MUL(64)
+            RM_STAT_SUM(48)
+#endif
+
+            TMatrix4x4<T> c(
+            a.m00 * b.m00 + a.m01 * b.m10 + a.m02 * b.m20 + a.m03 * b.m30,
+            a.m00 * b.m01 + a.m01 * b.m11 + a.m02 * b.m21 + a.m03 * b.m31,
+            a.m00 * b.m02 + a.m01 * b.m12 + a.m02 * b.m22 + a.m03 * b.m32,
+            a.m00 * b.m03 + a.m01 * b.m13 + a.m02 * b.m23 + a.m03 * b.m33,
+
+            a.m10 * b.m00 + a.m11 * b.m10 + a.m12 * b.m20 + a.m13 * b.m30,
+            a.m10 * b.m01 + a.m11 * b.m11 + a.m12 * b.m21 + a.m13 * b.m31,
+            a.m10 * b.m02 + a.m11 * b.m12 + a.m12 * b.m22 + a.m13 * b.m32,
+            a.m10 * b.m03 + a.m11 * b.m13 + a.m12 * b.m23 + a.m13 * b.m33,
+
+            a.m20 * b.m00 + a.m21 * b.m10 + a.m22 * b.m20 + a.m23 * b.m30,
+            a.m20 * b.m01 + a.m21 * b.m11 + a.m22 * b.m21 + a.m23 * b.m31,
+            a.m20 * b.m02 + a.m21 * b.m12 + a.m22 * b.m22 + a.m23 * b.m32,
+            a.m20 * b.m03 + a.m21 * b.m13 + a.m22 * b.m23 + a.m23 * b.m33,
+
+            a.m30 * b.m00 + a.m31 * b.m10 + a.m32 * b.m20 + a.m33 * b.m30,
+            a.m30 * b.m01 + a.m31 * b.m11 + a.m32 * b.m21 + a.m33 * b.m31,
+            a.m30 * b.m02 + a.m31 * b.m12 + a.m32 * b.m22 + a.m33 * b.m32,
+            a.m30 * b.m03 + a.m31 * b.m13 + a.m32 * b.m23 + a.m33 * b.m33);
+
+            return c;
+
+
+            /*
+
+
             TMatrix4x4<T> c;
             c.m00 = a.m00 * b.m00 + a.m01 * b.m10 + a.m02 * b.m20 + a.m03 * b.m30;
             c.m01 = a.m00 * b.m01 + a.m01 * b.m11 + a.m02 * b.m21 + a.m03 * b.m31;
@@ -45,16 +77,14 @@ namespace rmmath {
             c.m32 = a.m30 * b.m02 + a.m31 * b.m12 + a.m32 * b.m22 + a.m33 * b.m32;
             c.m33 = a.m30 * b.m03 + a.m31 * b.m13 + a.m32 * b.m23 + a.m33 * b.m33;
 
-#ifdef RM_MATH_STAT
-            RM_STAT_MUL(64)
-            RM_STAT_SUM(48)
-#endif
+
             return c;
+             */
         }
 
 
         template<typename T>
-        inline TMatrix4x3<T> mul(const TMatrix4x4<T> &a, const TMatrix4x3<T> &b) {
+        inline TMatrix4x3<T> mul(const TMatrix4x4<T> &a, const TMatrix4x3<T> &b) noexcept {
             TMatrix4x3<T> c;
 
             c.m00 = a.m00*b.m00 + a.m01*b.m10 + a.m02*b.m20 + a.m03*b.m30;
@@ -82,7 +112,7 @@ namespace rmmath {
 
 
         template<typename T>
-        inline TMatrix4x2<T> mul(const TMatrix4x4<T> &a, const TMatrix4x2<T> &b) {
+        inline TMatrix4x2<T> mul(const TMatrix4x4<T> &a, const TMatrix4x2<T> &b) noexcept {
             TMatrix4x2<T> c;
 
             c.m00 = a.m00*b.m00 + a.m01*b.m10 + a.m02*b.m20 + a.m03*b.m30;
@@ -105,7 +135,7 @@ namespace rmmath {
         }
 
         template<typename T>
-        inline TMatrix4x1<T> mul(const TMatrix4x4<T> &a, const TMatrix4x1<T> &b) {
+        inline TMatrix4x1<T> mul(const TMatrix4x4<T> &a, const TMatrix4x1<T> &b) noexcept {
             TMatrix4x1<T> c;
 
             c.m00 = a.m00*b.m00 + a.m01*b.m10 + a.m02*b.m20 + a.m03*b.m30;
@@ -123,7 +153,7 @@ namespace rmmath {
         namespace ___unsafe
         {
             template<typename T>
-            inline void _mul(TMatrix4x4<T> &a, const TMatrix4x4<T> &b) {
+            inline void _mul(TMatrix4x4<T> &a, const TMatrix4x4<T> &b) noexcept {
 
                 auto m00 = a.m00 * b.m00 + a.m01 * b.m10 + a.m02 * b.m20 + a.m03 * b.m30;
                 auto m01 = a.m00 * b.m01 + a.m01 * b.m11 + a.m02 * b.m21 + a.m03 * b.m31;

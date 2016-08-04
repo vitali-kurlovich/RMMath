@@ -3,8 +3,6 @@ project(RMVectorMath)
 
 add_definitions(-std=c++11)
 
-
-
 include_directories(rmvmath)
 
 add_subdirectory(rmvmath)

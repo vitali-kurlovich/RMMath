@@ -1,5 +1,7 @@
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
+add_definitions(-std=c++11)
+
 add_executable(runBasicMathTests
         vector/vector2/TVector2_func_test.cpp
         vector/vector2/TVector2_func_interpolation_test.cpp

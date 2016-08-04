@@ -18,20 +18,20 @@ namespace rmmath {
     namespace matrix {
 
         template<typename T>
-        inline TMatrix4x4 <T> transpose(const TAffineMatrix4x4 <T> &a) {
-            TMatrix4x4 <T> result = {
+        inline const TMatrix4x4 <T> transpose(const TAffineMatrix4x4 <T> &a) noexcept {
+            TMatrix4x4 <T> result (
                     a.m00, a.m10, a.m20, a.m30,
                     a.m01, a.m11, a.m21, a.m31,
                     a.m02, a.m12, a.m22, a.m32,
                     0,     0,     0,     1
-            };
+            );
 
             return result;
         }
 
 
         template<typename T>
-        T determinant(const TAffineMatrix4x4 <T> &a) {
+        const T determinant(const TAffineMatrix4x4 <T> &a) noexcept {
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(9)
             RM_STAT_SUM(2)
@@ -39,10 +39,9 @@ namespace rmmath {
 #endif
             return a.m02*(a.m10*a.m21 - a.m11*a.m20) + a.m01*(a.m12*a.m20 - a.m10*a.m22) + a.m00*(a.m11*a.m22 - a.m12*a.m21);
         }
-
-
+        
         template<typename T>
-        TAffineMatrix4x4 <T> inverse(const TAffineMatrix4x4 <T> &a, bool &sucess) {
+        const TAffineMatrix4x4 <T> inverse(const TAffineMatrix4x4 <T> &a, bool &sucess) noexcept {
 
             auto v3 = a.m10 * a.m21 - a.m11 * a.m20;
             auto v6 = a.m01 * a.m20 - a.m00 * a.m21;

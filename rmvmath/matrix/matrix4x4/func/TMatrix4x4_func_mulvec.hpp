@@ -16,7 +16,7 @@
 namespace rmmath {
 
     template<typename T>
-    inline vector::TVector4 <T> mul(const matrix::TMatrix4x4 <T> &a, const vector::TVector4 <T> &b) {
+    inline const vector::TVector4<T> mul(const matrix::TMatrix4x4 <T> &a, const vector::TVector4 <T> &b) noexcept {
         vector::TVector4<T> c;
 
         c.x = a.m03 * b.w + a.m00 * b.x + a.m01 * b.y + a.m02 * b.z;
@@ -50,7 +50,7 @@ namespace rmmath {
 
     namespace ___unsafe {
         template<typename T>
-        inline void _mul(vector::TVector4 <T> &b, const matrix::TMatrix4x4 <T> &a) {
+        inline void _mul(vector::TVector4 <T> &b, const matrix::TMatrix4x4 <T> &a) noexcept {
 
             auto x = a.m30 * b.w + a.m00 * b.x + a.m10 * b.y + a.m20 * b.z;
             auto y = a.m31 * b.w + a.m01 * b.x + a.m11 * b.y + a.m21 * b.z;
