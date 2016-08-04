@@ -15,6 +15,8 @@
 
 #define RM_STAT_SQRT(sqrt) MathStatistic::instance().incSqrt(sqrt);
 
+#define RM_STAT_CALLS(calls) MathStatistic::instance().incCalls(calls);
+
 #else
 #define RM_STAT_MUL(mul) /* MULs:  mul */
 #define RM_STAT_DIV(div) /* DIVs:  div */
@@ -23,7 +25,7 @@
 #define RM_STAT_SUB(sub) /* SUBs:  sub */
 
 #define RM_STAT_SQRT(sub) /* SQRTs:  sqrt */
-
+#define RM_STAT_CALLS(calls) /* CALLs: call */
 #endif
 
 

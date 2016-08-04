@@ -3,3 +3,15 @@
 //
 
 #include "gtest/gtest.h"
+
+#include <transform/TTransform.hpp>
+
+
+TEST(Transform, constructor) {
+
+    TTransform tm;
+
+    EXPECT_EQ(tm.getParent(), nullptr);
+    EXPECT_FALSE(tm.hasParent());
+
+}

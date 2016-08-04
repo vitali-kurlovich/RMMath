@@ -20,14 +20,6 @@ template<typename T>
 class TTransform3d : public TTransform {
 
 private:
-    struct {
-        unsigned int rotationChanged:1;
-        unsigned int positionChanged:1;
-        unsigned int scaleChanged:1;
-        unsigned int transformChanged:1;
-    } _flags;
-
-
     TQuaternion<T> _localRotation;
     TAffineVector4<T> _localPosition;
     TVector3<T> _localScale{1,1,1};
@@ -36,24 +28,6 @@ private:
 
 private:
     TAffineMatrix4x4<T> _globalTransform;
-
-
-protected:
-
-    void setRotationNeedsUpdate() noexcept {
-        _flags.rotationChanged = true;
-        _flags.transformChanged = true;
-    }
-
-    void setPositionNeedsUpdate() noexcept {
-        _flags.positionChanged = true;
-        _flags.transformChanged = true;
-    }
-
-    void setScaleNeedsUpdate() noexcept {
-        _flags.scaleChanged = true;
-        _flags.transformChanged = true;
-    }
 
 public:
 
@@ -67,13 +41,23 @@ public:
 
     const TAffineMatrix4x4<T> getLocalTransform() {
 
-        if (_flags.transformChanged) {
+        if (isTransformNeedsUpdate()) {
 
+            setTransformUpdated();
         }
-
         return _localTransform;
     }
 
+
+
+    const TAffineMatrix4x4<T> getGlobalTransform() {
+
+        if (isGlobalTransformNeedsUpdate()) {
+
+            setGlobalTransformUpdated();
+        }
+        return _globalTransform;
+    }
 
 
 };
