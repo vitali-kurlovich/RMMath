@@ -33,6 +33,14 @@ TEST(quaternion, constructor) {
     EXPECT_EQ(a, b);
 }
 
+TEST(quaternion, equal) {
+    tqtf a(5.f, -12.5f, 6.f, -9.f);
+    tqtf b(5.f*logf(M_E), -12.5f*logf(M_E), 6.f*logf(M_E), -9.f*logf(M_E));
+
+    EXPECT_NE(a,b);
+    EXPECT_TRUE(equal<float>(a,b));
+}
+
 TEST(quaternion_op, mul) {
     tqti a = {1, 2, 3, 4};
     tqti b = {5, 6, 7, 8};
@@ -153,6 +161,17 @@ TEST(quaternion_op, norm) {
 
     EXPECT_EQ(norm(a), 30);
 }
+
+TEST(quaternion_op, normalize) {
+    tqtf a = {2.f, 3.f, 4.f, 5.f};
+    tqtf b = {20.f, 30.f, 40.f, 50.f};
+    
+    EXPECT_TRUE(equal<float>( normalize(a),normalize(b)));
+    tqtf n = normalize(b);
+    EXPECT_TRUE(equal<float>( norm(n), 1.f));
+}
+
+
 
 TEST(quaternion_op, inverse) {
     tqtf a = {25, -42, 92, -2};

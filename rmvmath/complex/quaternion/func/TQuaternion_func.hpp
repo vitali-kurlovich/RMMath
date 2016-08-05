@@ -143,6 +143,28 @@ namespace rmmath {
 
 
         template<typename T>
+        const TQuaternion<T> normalize(const TQuaternion <T> &a)  {
+#ifdef RM_MATH_STAT
+            RM_STAT_MUL(4)
+            RM_STAT_SUM(3)
+#endif
+            auto norm = a.w * a.w + a.i * a.i + a.j * a.j + a.k * a.k;
+
+            if (equal_to_one<T>(norm)) {
+                return a;
+            }
+
+#ifdef RM_MATH_STAT
+            RM_STAT_MUL(4)
+            RM_STAT_DIV(1)
+            RM_STAT_SQRT(1)
+#endif
+            auto invLen = 1 / sqrt(norm);
+            return TQuaternion<T>(a.w * invLen, a.i * invLen, a.j * invLen, a.k * invLen);
+        }
+
+
+        template<typename T>
         inline TQuaternion <T> inverse(const TQuaternion <T> &a) noexcept {
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(4)
