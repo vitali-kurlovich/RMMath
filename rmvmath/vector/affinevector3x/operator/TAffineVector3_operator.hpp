@@ -15,32 +15,32 @@ namespace rmmath {
     namespace vector {
 
         template<typename T>
-        inline bool operator == (const TAffineVector3<T> &a, const TAffineVector3<T> &b) {
+        constexpr bool operator == (const TAffineVector3<T> &a, const TAffineVector3<T> &b) noexcept {
             return &a == &b || (a.x == b.x && a.y == b.y);
         }
 
         template<typename T>
-        inline bool operator != (const TAffineVector3<T> &a, const TAffineVector3<T> &b) {
+        constexpr bool operator != (const TAffineVector3<T> &a, const TAffineVector3<T> &b) noexcept {
             return !(a == b);
         }
 
         template<typename T>
-        inline bool operator == (const TAffineVector3<T> &a, const TVector3<T> &b) {
+        constexpr bool operator == (const TAffineVector3<T> &a, const TVector3<T> &b) noexcept {
             return (b.z == 1 && a.x == b.x && a.y == b.y);
         }
 
         template<typename T>
-        inline bool operator != (const TAffineVector3<T> &a, const TVector3<T> &b) {
+        constexpr bool operator != (const TAffineVector3<T> &a, const TVector3<T> &b) noexcept {
             return !(a == b);
         }
 
         template<typename T>
-        inline bool operator == (const TVector3<T> &a, const TAffineVector3<T> &b) {
+        constexpr bool operator == (const TVector3<T> &a, const TAffineVector3<T> &b) noexcept {
             return  (a.z == 1 && a.x == b.x && a.y == b.y);
         }
 
         template<typename T>
-        inline bool operator != (const TVector3<T> &a, const TAffineVector3<T> &b) {
+        constexpr bool operator != (const TVector3<T> &a, const TAffineVector3<T> &b) noexcept {
             return !(a == b);
         }
     }
