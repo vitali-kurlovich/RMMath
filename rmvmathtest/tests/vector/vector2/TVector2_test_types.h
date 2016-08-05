@@ -7,7 +7,7 @@
 
 
 #include <vector/TVector2.hpp>
-
+using namespace rmmath;
 using namespace rmmath::vector;
 
 typedef TVector2<int> tvec2i;

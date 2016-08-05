@@ -138,7 +138,6 @@ namespace rmmath {
             return c;
         }
 
-
         template<typename T>
         inline TQuaternion <T> conjugate(const TQuaternion <T> &a) noexcept {
             TQuaternion<T> c = {a.w, -a.i, -a.j, -a.k};
@@ -158,7 +157,7 @@ namespace rmmath {
         template<typename T>
         inline TQuaternion <T> inverse(const TQuaternion <T> &a) noexcept {
             auto invnorm = 1 / norm(a);
-            TQuaternion<T> c = {a.w * invnorm, -a.i * invnorm, -a.j * invnorm, -a.k * invnorm};
+            TQuaternion<T> c{a.w * invnorm, -a.i * invnorm, -a.j * invnorm, -a.k * invnorm};
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(4)
             RM_STAT_DIV(1)

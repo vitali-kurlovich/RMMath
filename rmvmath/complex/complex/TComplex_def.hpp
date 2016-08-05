@@ -5,7 +5,6 @@
 #ifndef RMVECTORMATH_TCOMPLEX_DEF_HPP
 #define RMVECTORMATH_TCOMPLEX_DEF_HPP
 
-
 #include "vector/vector3x/TVector3_def.hpp"
 
 namespace rmmath {

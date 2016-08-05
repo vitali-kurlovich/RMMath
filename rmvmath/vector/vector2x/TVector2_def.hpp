@@ -5,6 +5,7 @@
 #ifndef RMVECTORMATH_TVECTOR2_DEF_HPP
 #define RMVECTORMATH_TVECTOR2_DEF_HPP
 
+#include "../../common/common.hpp"
 
 namespace rmmath {
 
@@ -37,6 +38,11 @@ namespace rmmath {
 
         };
 
+    }
+
+    template <typename T>
+    constexpr bool equal(const vector::TVector2<T> &a, const vector::TVector2<T> &b) noexcept {
+        return &a == &b || (equal<T>(a.x, b.x) && equal<T>(a.y, b.y));
     }
 }
 

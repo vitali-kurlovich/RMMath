@@ -42,7 +42,6 @@ add_executable(runBasicMathTests
         matrix/matrix2x4/TMatrix2x4_func_test.cpp
         matrix/matrix2x4/TMatrix2x4_operator_test.cpp
 
-
         matrix/matrix3x1/TMatrix3x1_func_test.cpp
         matrix/matrix3x1/TMatrix3x1_operator_test.cpp
 
@@ -54,7 +53,6 @@ add_executable(runBasicMathTests
 
         matrix/matrix3x4/TMatrix3x4_operator_test.cpp
         matrix/matrix3x4/TMatrix3x4_func_test.cpp
-
 
         matrix/matrix4x4/TMatrix4x4_func_test.cpp
         matrix/matrix4x4/TMatrix4x4_operator_test.cpp
@@ -68,10 +66,8 @@ add_executable(runBasicMathTests
         matrix/matrix4x1/TMatrix4x1_operator_test.cpp
         matrix/matrix4x1/TMatrix4x1_func_test.cpp
 
-
         matrix/affinematrix4x4/TAffineMatrix4x4_operator_test.cpp
         matrix/affinematrix4x4/TAffineMatrix4x4_func_test.cpp
-
 
         matrix/affinematrix3x3/TAffineMatrix3x3_operator_test.cpp
         matrix/affinematrix3x3/TAffineMatrix3x3_func_test.cpp
@@ -83,7 +79,6 @@ add_executable(runBasicMathTests
         vector/affinevector4/TAffineVector4_operator_test.cpp
         vector/affinevector3/TAffineVector3_operator_test.cpp
 
-
         profiler/MathStatisticTest.cpp
         profiler/RMProfilerTest.cpp
         profiler/RMProfilerStatOffTest.cpp
@@ -94,7 +89,7 @@ add_executable(runBasicMathTests
         complex/iquaternion/TIdentityQuaternion_func_test.cpp
 
         transform/TTransformTest.cpp
-        math/TMathTest.cpp
+        common/common_test.cpp
 
         )
 

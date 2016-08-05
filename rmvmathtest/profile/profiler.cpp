@@ -9,6 +9,8 @@
 #include "Profiler.hpp"
 
 #include "matrix/ProfileMatrixCase.hpp"
+#include "quaternion/ProfileQuaternionCase.hpp"
+
 #include "ProfileCase.hpp"
 
 #include <types/float.h>
@@ -19,8 +21,8 @@ int  main(int argc, char* argv[]) {
 
     profiler::Profiler prof;
 
-    ProfileMatrixCase* mc = new ProfileMatrixCase(&prof);
-    prof.addProfileCases(mc);
+    //ProfileMatrixCase* mc = new ProfileMatrixCase(&prof);
+    prof.addProfileCases(new ProfileMatrixCase(&prof));
     prof.run();
 
     //cout << "sizeof(fmt4x4): " << sizeof(fmt4x4) << endl;

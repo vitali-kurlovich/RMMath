@@ -8,6 +8,7 @@
 
 #include "../vector3x/TVector3_def.hpp"
 #include "../vector2x/TVector2_def.hpp"
+#include "../../common/common.hpp"
 
 namespace rmmath {
 
@@ -54,6 +55,8 @@ namespace rmmath {
         };
 
     }
+
+
 }
 
 #endif //RMVECTORMATH_TAFFINEVECTOR4_DEF_HPP

@@ -6,7 +6,7 @@
 
 #include "TVector2_test_types.h"
 
-
+#include <math.h>
 
 TEST(vector2, constructor) {
     tvec2i a = {3, -8};
@@ -22,6 +22,13 @@ TEST(vector2, constructor) {
     EXPECT_EQ(a,c);
 }
 
+TEST(vector2, equalvec) {
+    tvec2f a(5.f, -12.5f);
+    tvec2f b(5.f*logf(M_E), -12.5f*logf(M_E));
+
+    EXPECT_NE(a,b);
+    EXPECT_TRUE(equal<float>(a,b));
+}
 
 // Dot
 

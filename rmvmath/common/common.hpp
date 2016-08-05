@@ -1,13 +1,9 @@
 //
-// Created by Vitali Kurlovich on 3/19/16.
+// Created by Vitali Kurlovich on 8/5/16.
 //
 
-
-#ifndef RMVECTORMATH_MATH_HPP
-#define RMVECTORMATH_MATH_HPP
-
-#include <math.h>
-#include <float.h>
+#ifndef RMVECTORMATH_COMMON_HPP
+#define RMVECTORMATH_COMMON_HPP
 
 namespace rmmath {
 
@@ -18,7 +14,7 @@ namespace rmmath {
 
     template <typename T>
     constexpr bool equal_to_zero(const float value) noexcept {
-        return  value > -0.000000476838f && value < 0.000000476838f;
+        return  value > -0.0000476838f && value < 0.0000476838f;
     }
 
     template <typename T>
@@ -33,7 +29,7 @@ namespace rmmath {
 
     template <typename T>
     constexpr bool equal_to_one(const float value) noexcept {
-        return  value > 1.f - 0.000000476838f && value < 1.000000476838f;
+        return  value > 1.f - 0.0000476838f && value < 1.0000476838f;
     }
 
     template <typename T>
@@ -71,8 +67,6 @@ namespace rmmath {
     constexpr bool equal(const double a, const float b) noexcept {
         return equal_to_zero<float>((float)a-b);
     }
-
 }
 
-
-#endif //RMVECTORMATH_MATH_HPP
+#endif //RMVECTORMATH_COMMON_HPP
