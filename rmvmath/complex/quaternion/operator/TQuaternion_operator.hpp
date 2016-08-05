@@ -14,12 +14,12 @@ namespace rmmath {
     namespace complex {
 
         template<typename T>
-        inline bool operator == (const TQuaternion<T> &a, const TQuaternion<T> &b) {
+        constexpr bool operator == (const TQuaternion<T> &a, const TQuaternion<T> &b) noexcept {
             return &a == &b || (a.w == b.w && a.i == b.i && a.j == b.j && a.k == b.k);
         }
 
         template<typename T>
-        inline bool operator != (const TQuaternion<T> &a, const TQuaternion<T> &b) {
+        constexpr bool operator != (const TQuaternion<T> &a, const TQuaternion<T> &b) noexcept {
             return !(a == b);
         }
     }

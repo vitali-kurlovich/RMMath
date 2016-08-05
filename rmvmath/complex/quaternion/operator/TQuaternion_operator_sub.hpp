@@ -14,17 +14,17 @@ namespace rmmath {
     namespace complex {
 
         template<typename T>
-        inline TQuaternion<T> operator - (const TQuaternion<T> &a, const TQuaternion<T> &b) {
+        constexpr TQuaternion<T> operator - (const TQuaternion<T> &a, const TQuaternion<T> &b) noexcept {
             return sub(a,b);
         }
 
         template<typename T>
-        inline TQuaternion<T> operator - (const TQuaternion<T> &a, const T b) {
+        constexpr TQuaternion<T> operator - (const TQuaternion<T> &a, const T b) noexcept {
             return sub(a,b);
         }
 
         template<typename T>
-        inline TQuaternion<T> operator - (const T a, const TQuaternion<T> &b) {
+        constexpr TQuaternion<T> operator - (const T a, const TQuaternion<T> &b) noexcept {
             return sub(a,b);
         }
     }

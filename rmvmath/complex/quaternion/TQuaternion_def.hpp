@@ -5,11 +5,12 @@
 #ifndef RMVECTORMATH_TQUATERNION_DEF_HPP
 #define RMVECTORMATH_TQUATERNION_DEF_HPP
 
+#include "../../common/common.hpp"
 
 #include "vector/TVector3.hpp"
 #include "vector/TVector4.hpp"
 
-#include "../iquaternion/TIdentityQuaternion_def.hpp"
+
 
 namespace rmmath {
 
@@ -46,11 +47,6 @@ namespace rmmath {
                     : re(w), im(vec)
             {}
 
-            constexpr
-            TQuaternion(const TIdentityQuaternion<T>& iquat) noexcept
-            :re(iquat.re), im(iquat.im)
-            {}
-
             static const TQuaternion<T>& zero() {
                 static TQuaternion<T> zero;
                 return zero;
@@ -58,11 +54,18 @@ namespace rmmath {
 
 
             static const TQuaternion<T>& identity() {
-                static TQuaternion<T> identity(0, 1, 0, 0);
+                static TQuaternion<T> identity(0, 0, 0, 1);
                 return identity;
             }
         };
     }
+
+    template <typename T>
+    constexpr bool equal(const complex::TQuaternion<T> &a, const complex::TQuaternion<T> &b) noexcept {
+        return &a == &b ||
+               (equal<T>(a.w, b.w) && equal<T>(a.i, b.i) && equal<T>(a.j, b.j) && equal<T>(a.k, b.k));
+    }
+
 }
 
 #endif //RMVECTORMATH_TQUATERNION_DEF_HPP

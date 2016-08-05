@@ -86,8 +86,6 @@ add_executable(runBasicMathTests
         complex/quaternion/TQuaternion_operator_test.cpp
         complex/quaternion/TQuaternion_func_test.cpp
 
-        complex/iquaternion/TIdentityQuaternion_func_test.cpp
-
         transform/TTransformTest.cpp
         common/common_test.cpp
 

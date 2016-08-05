@@ -5,6 +5,8 @@
 #ifndef RMVECTORMATH_TMATRIX4X4_DEF_HPP
 #define RMVECTORMATH_TMATRIX4X4_DEF_HPP
 
+#include "../../common/common.hpp"
+
 #include "../../vector/vector4x/TVector4_def.hpp"
 
 namespace rmmath {
@@ -72,8 +74,22 @@ namespace rmmath {
             }
 
         };
-
     }
+
+    /*
+
+    template <typename T>
+    constexpr bool equal(const matrix::TMatrix4x4<T> &a, const matrix::TMatrix4x4<T> &b) noexcept {
+        return &a == &b ||
+                (
+                       equal<T>(a.row[0], b.row[0]) &&
+                       equal<T>(a.row[1], b.row[1]) &&
+                       equal<T>(a.row[2], b.row[2]) &&
+                       equal<T>(a.row[3], b.row[3])
+                );
+    }
+
+     */
 }
 
 #endif //RMVECTORMATH_TMATRIX4X4_DEF_HPP
