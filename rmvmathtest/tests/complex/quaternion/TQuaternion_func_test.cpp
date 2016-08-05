@@ -165,7 +165,7 @@ TEST(quaternion_op, norm) {
 TEST(quaternion_op, normalize) {
     tqtf a = {2.f, 3.f, 4.f, 5.f};
     tqtf b = {20.f, 30.f, 40.f, 50.f};
-    
+
     EXPECT_TRUE(equal<float>( normalize(a),normalize(b)));
     tqtf n = normalize(b);
     EXPECT_TRUE(equal<float>( norm(n), 1.f));

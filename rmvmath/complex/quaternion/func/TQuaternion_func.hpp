@@ -148,7 +148,7 @@ namespace rmmath {
             RM_STAT_MUL(4)
             RM_STAT_SUM(3)
 #endif
-            auto norm = a.w * a.w + a.i * a.i + a.j * a.j + a.k * a.k;
+            auto norm = norm(a);
 
             if (equal_to_one<T>(norm)) {
                 return a;
