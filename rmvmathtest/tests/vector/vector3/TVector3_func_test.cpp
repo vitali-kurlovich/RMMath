@@ -38,6 +38,21 @@ TEST(vector3, constructor) {
 }
 
 
+TEST(vector3, equal) {
+    tvec3f a(5.f, -12.5f, 6.f);
+    tvec3f b(5.f*logf(M_E), -12.5f*logf(M_E), 6.f*logf(M_E));
+
+    EXPECT_NE(a,b);
+    EXPECT_TRUE(equal<float>(a,b));
+
+    tavec3f affine = {2.f,3.f};
+    tvec3f c(2.f*logf(M_E), 3.f*logf(M_E), logf(M_E));
+
+    EXPECT_NE(affine, c);
+    EXPECT_TRUE(equal<float>(affine, c));
+    EXPECT_TRUE(equal<float>(c, affine));
+}
+
 
 // Dot
 

@@ -5,7 +5,10 @@
 #ifndef RMVECTORMATH_TAFFINEVECTOR3_DEF_HPP
 #define RMVECTORMATH_TAFFINEVECTOR3_DEF_HPP
 
+#include "../../common/common.hpp"
+
 #include "../vector2x/TVector2_def.hpp"
+
 
 namespace rmmath {
 
@@ -28,7 +31,7 @@ namespace rmmath {
             };
 
 
-            TAffineVector3(const T x = 0, const T y = 0)
+            constexpr TAffineVector3(const T x = 0, const T y = 0) noexcept
                     : x(x), y(y)
             {
 
@@ -44,7 +47,11 @@ namespace rmmath {
             }
 
         };
+    }
 
+    template <typename T>
+    constexpr bool equal(const vector::TAffineVector3<T> &a, const vector::TAffineVector3<T> &b) noexcept {
+        return &a == &b || (equal<T>(a.x, b.x) && equal<T>(a.y, b.y));
     }
 }
 

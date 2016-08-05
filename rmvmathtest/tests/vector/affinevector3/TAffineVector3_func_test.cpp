@@ -32,7 +32,13 @@ TEST(affinevector3, constructor) {
 }
 
 
+TEST(affinevector3, equal) {
+    tavec3f a(5.f, -12.5f);
+    tavec3f b(5.f*logf(M_E), -12.5f*logf(M_E));
 
+    EXPECT_NE(a,b);
+    EXPECT_TRUE(equal<float>(a,b));
+}
 
 // Dot
 

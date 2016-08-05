@@ -5,6 +5,7 @@
 #ifndef RMVECTORMATH_TVECTOR4_DEF_HPP
 #define RMVECTORMATH_TVECTOR4_DEF_HPP
 
+#include "../../common/common.hpp"
 
 #include "../vector3x/TVector3_def.hpp"
 #include "../vector2x/TVector2_def.hpp"
@@ -61,7 +62,23 @@ namespace rmmath {
             }
 
         };
+    }
 
+    template <typename T>
+    constexpr bool equal(const vector::TVector4<T> &a, const vector::TVector4<T> &b) noexcept {
+        return &a == &b ||
+                (equal<T>(a.x, b.x) && equal<T>(a.y, b.y) && equal<T>(a.z, b.z) && equal<T>(a.w, b.w));
+    }
+
+
+    template <typename T>
+    constexpr bool equal(const vector::TAffineVector4<T> &a, const vector::TVector4<T> &b) noexcept {
+        return equal_to_one<T>(b.w) && equal<T>(a.x, b.x) && equal<T>(a.y, b.y) && equal<T>(a.z, b.z);
+    }
+
+    template <typename T>
+    constexpr bool equal(const vector::TVector4<T> &a, const vector::TAffineVector4<T> &b) noexcept {
+        return equal<T>(b, a);
     }
 }
 

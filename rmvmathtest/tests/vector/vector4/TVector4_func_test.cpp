@@ -49,6 +49,23 @@ TEST(vector4, constructor) {
 
 }
 
+
+TEST(vector4, equal) {
+    tvec4f a(5.f, -12.5f, 6.f, -9.f);
+    tvec4f b(5.f*logf(M_E), -12.5f*logf(M_E), 6.f*logf(M_E), -9.f*logf(M_E));
+
+    EXPECT_NE(a,b);
+    EXPECT_TRUE(equal<float>(a,b));
+
+    tavec4f affine = {2.f,3.f, 6.f};
+    tvec4f c(2.f*logf(M_E), 3.f*logf(M_E), 6.f*logf(M_E), logf(M_E));
+
+    EXPECT_NE(affine, c);
+    EXPECT_TRUE(equal<float>(affine, c));
+    EXPECT_TRUE(equal<float>(c, affine));
+}
+
+
 // Dot
 
 TEST(doti_nonull, dot4) {

@@ -39,6 +39,14 @@ TEST(affinevector4, constructor) {
 }
 
 
+TEST(affinevector4, equal) {
+    tavec4f a(5.f, -12.5f, 6.f);
+    tavec4f b(5.f*logf(M_E), -12.5f*logf(M_E), 6.f*logf(M_E));
+
+    EXPECT_NE(a,b);
+    EXPECT_TRUE(equal<float>(a,b));
+}
+
 // Dot
 
 TEST(affinedoti_nonull, dot4) {
