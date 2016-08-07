@@ -26,4 +26,13 @@ TEST(Utils, rotation) {
     );
 
     EXPECT_TRUE(equal<float>(rot, result));
+
+
+    EXPECT_TRUE(equal<float>(rotationXYZMatrix3x3<float>(1.f,2.f,3.f),
+                             rotationXMatrix3x3<float>(1.f)*
+                             rotationYMatrix3x3<float>(2.f)*
+                             rotationZMatrix3x3<float>(3.f)
+    ));
+
+
 }

@@ -33,12 +33,12 @@ namespace rmmath {
 
             constexpr
             TVector4(const TVector3<T>& other, const T w) noexcept
-                    : xyz(other), w(w)
+                    : x(other.x), y(other.y), z(other.z), w(w)
             {}
 
             constexpr
             TVector4(const TVector2<T>& other, const T z, const T w) noexcept
-                    : xy(other), z(z), w(w)
+                    : x(other.x), y(other.y), z(z), w(w)
             {}
 
             constexpr
