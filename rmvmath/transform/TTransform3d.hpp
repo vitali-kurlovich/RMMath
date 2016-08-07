@@ -13,8 +13,7 @@
 #include "../complex/TQuaternion.hpp"
 
 
-
-// TSR transformation
+// TRS transformation
 
 template<typename T>
 class TTransform3d : public TTransform {
@@ -34,7 +33,7 @@ public:
     TTransform3d()
             : _localTransform(TAffineMatrix4x4<T>::identity()),
               _localPosition(TAffineVector4<T>::zero()),
-              _localScale(1,1,1),
+              _localScale(1, 1, 1),
               _localRotation(TQuaternion<T>::identity())
     {
     }

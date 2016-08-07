@@ -22,6 +22,7 @@ namespace profiler {
     protected:
         std::vector<const ProfileCase*> profileCases;
         std::stack<std::chrono::steady_clock::time_point> timestack;
+        bool _blockCout{false};
 
     public:
         void addProfileCases(const ProfileCase* profileCase ) {
@@ -31,6 +32,16 @@ namespace profiler {
         void run() {
             std::cout << "Start profiling..." <<  std::endl;
             std::vector<const ProfileCase*>::iterator i;
+
+            _blockCout = true;
+            for (u_int32_t iter = 0; iter < 10; iter++) {
+                for (i = profileCases.begin(); i != profileCases.end(); ++i) {
+                    rmmath::MathStatistic::instance().resetAll();
+                    (*i)->run();
+                }
+            }
+
+            _blockCout = false;
             for (i = profileCases.begin(); i!= profileCases.end(); ++i) {
                 printProfileCaseHeader(*i);
                 rmmath::MathStatistic::instance().resetAll();
@@ -40,6 +51,8 @@ namespace profiler {
 
     public:
         void beginProfileCase(const char* casename) {
+            if (_blockCout)
+                return;
             printBeginProfileCase(casename);
             rmmath::MathStatistic::instance().resetAll();
             auto now = std::chrono::steady_clock::now();
@@ -47,7 +60,8 @@ namespace profiler {
         }
 
         void endProfileCase(const char* casename) {
-
+            if (_blockCout)
+                return;
             auto now = std::chrono::steady_clock::now();
             auto begintime = timestack.top();
             timestack.pop();

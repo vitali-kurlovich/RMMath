@@ -11,7 +11,7 @@
 
 #include "affinevector4x/func/TAffineVector4_func.hpp"
 #include "affinevector4x/func/TAffineVector4_func_interpolation.hpp"
-
+#include "affinevector4x/func/TAffineVector4_equal.hpp"
 
 #include "affinevector4x/operator/TAffineVector4_operator.hpp"
 #include "affinevector4x/operator/TAffineVector4_operator_mul.hpp"

@@ -9,7 +9,9 @@
 
 #include "vector3x/func/TVector3_func.hpp"
 #include "vector3x/func/TVector3_func_interpolation.hpp"
+#include "vector3x/func/TVector3_equal.hpp"
 
 #include "vector3x/operator/TVector3_operator.hpp"
+
 
 #endif //RMVECTORMATH_TVECTOR3_H

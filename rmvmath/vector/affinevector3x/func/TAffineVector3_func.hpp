@@ -21,7 +21,8 @@ namespace rmmath {
     namespace vector {
 
         template<typename T>
-        constexpr T dot(const TAffineVector3<T> &a, const TAffineVector3<T> &b) noexcept {
+        constexpr
+        T dot(const TAffineVector3<T> &a, const TAffineVector3<T> &b) noexcept {
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(2)
             RM_STAT_SUM(2)
@@ -30,7 +31,8 @@ namespace rmmath {
         }
 
         template<typename T>
-        constexpr T dot(const TAffineVector3<T> &a, const TVector3<T> &b) noexcept {
+        constexpr
+        T dot(const TAffineVector3<T> &a, const TVector3<T> &b) noexcept {
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(2)
             RM_STAT_SUM(2)
@@ -44,7 +46,8 @@ namespace rmmath {
         }
 
         template<typename T>
-        constexpr TVector3 <T> cross(const TAffineVector3 <T> &a, const TAffineVector3 <T> &b) noexcept {
+        constexpr
+        TVector3 <T> cross(const TAffineVector3 <T> &a, const TAffineVector3 <T> &b) noexcept {
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(2)
             RM_STAT_SUB(3)
@@ -53,7 +56,8 @@ namespace rmmath {
         }
 
         template<typename T>
-        constexpr TVector3<T> cross(const TVector3<T> &a, const TAffineVector3<T> &b) noexcept {
+        constexpr
+        TVector3<T> cross(const TVector3<T> &a, const TAffineVector3<T> &b) noexcept {
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(4)
             RM_STAT_SUB(3)
@@ -62,7 +66,8 @@ namespace rmmath {
         }
 
         template<typename T>
-        constexpr TVector3<T> cross(const TAffineVector3<T> &a, const TVector3<T> &b) noexcept {
+        constexpr
+        TVector3<T> cross(const TAffineVector3<T> &a, const TVector3<T> &b) noexcept {
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(4)
             RM_STAT_SUB(3)
@@ -71,7 +76,8 @@ namespace rmmath {
         }
 
         template<typename T>
-        constexpr T norm(const TAffineVector3 <T> &a) noexcept {
+        constexpr
+        T norm(const TAffineVector3 <T> &a) noexcept {
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(2)
             RM_STAT_SUM(2)
@@ -93,7 +99,8 @@ namespace rmmath {
 
         // mul
         template<typename T>
-        constexpr TAffineVector3<T> mul(const TAffineVector3<T> &a, const TAffineVector3<T> &b) noexcept {
+        constexpr
+        TAffineVector3<T> mul(const TAffineVector3<T> &a, const TAffineVector3<T> &b) noexcept {
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(2)
 #endif
@@ -101,7 +108,8 @@ namespace rmmath {
         }
 
         template<typename T>
-        constexpr TVector3<T> mul(const TAffineVector3<T> &a, const TVector3<T> &b) noexcept {
+        constexpr
+        TVector3<T> mul(const TAffineVector3<T> &a, const TVector3<T> &b) noexcept {
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(2)
 #endif
@@ -109,12 +117,14 @@ namespace rmmath {
         }
 
         template<typename T>
-        constexpr TVector3<T> mul(const TVector3<T> &a, const TAffineVector3<T> &b) noexcept {
+        constexpr
+        TVector3<T> mul(const TVector3<T> &a, const TAffineVector3<T> &b) noexcept {
             return mul(b,a);
         }
 
         template<typename T>
-        constexpr TVector3<T> mul(const TAffineVector3<T> &a, const T scalar) noexcept {
+        constexpr
+        TVector3<T> mul(const TAffineVector3<T> &a, const T scalar) noexcept {
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(2)
 #endif
@@ -122,7 +132,8 @@ namespace rmmath {
         }
 
         template<typename T>
-        constexpr TVector3<T> mul( const T scalar, const TAffineVector3<T> &a) noexcept {
+        constexpr
+        TVector3<T> mul( const T scalar, const TAffineVector3<T> &a) noexcept {
             return mul(a, scalar);
         }
 

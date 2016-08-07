@@ -89,6 +89,7 @@ add_executable(runBasicMathTests
         transform/TTransformTest.cpp
         common/common_test.cpp
 
+        utils/UtilsTest.cpp
         )
 
 

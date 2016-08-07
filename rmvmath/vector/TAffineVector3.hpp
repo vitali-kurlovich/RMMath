@@ -9,6 +9,8 @@
 
 #include "affinevector3x/func/TAffineVector3_func.hpp"
 #include "affinevector3x/func/TAffineVector3_func_interpolation.hpp"
+#include "affinevector3x/func/TAffineVector3_equal.hpp"
+
 
 #include "affinevector3x/operator/TAffineVector3_operator.hpp"
 #include "affinevector3x/operator/TAffineVector3_operator_sum.hpp"

@@ -10,7 +10,7 @@
 #include "matrix3x3/func/TMatrix3x3_func.hpp"
 #include "matrix3x3/func/TMatrix3x3_func_mul.hpp"
 #include "matrix3x3/func/TMatrix3x3_func_mulvec.hpp"
-
+#include "matrix3x3/func/TMatrix3x3_equal.hpp"
 
 #include "matrix3x3/operator/TMatrix3x3_operator.hpp"
 #include "matrix3x3/operator/TMatrix3x3_operator_mul.hpp"

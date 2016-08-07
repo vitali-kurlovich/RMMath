@@ -22,7 +22,9 @@ int  main(int argc, char* argv[]) {
     profiler::Profiler prof;
 
     //ProfileMatrixCase* mc = new ProfileMatrixCase(&prof);
-    prof.addProfileCases(new ProfileMatrixCase(&prof));
+    //prof.addProfileCases(new ProfileMatrixCase(&prof));
+    prof.addProfileCases(new ProfileQuaternionCase(&prof));
+
     prof.run();
 
     //cout << "sizeof(fmt4x4): " << sizeof(fmt4x4) << endl;

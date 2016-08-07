@@ -16,23 +16,34 @@ private:
     std::vector<TTransform*>  _childs;
 
 private:
-    struct {
-        unsigned int rotationChanged:1;
-        unsigned int positionChanged:1;
-        unsigned int scaleChanged:1;
-        unsigned int transformChanged:1;
+    union {
+        struct {
+            unsigned int rotationChanged:1;
+            unsigned int positionChanged:1;
+            unsigned int scaleChanged:1;
+            unsigned int transformChanged:1;
 
-        unsigned int globalTransformChanged:1;
+            unsigned int rotated:1;
+            unsigned int translated:1;
+            unsigned int scaled:1;
 
-    } _flags;
+            unsigned int globalTransformChanged:1;
+
+        } _flags;
+
+        unsigned int _allFlags;
+    };
 
 public:
 
-    inline const TTransform* getParent() noexcept {
+     TTransform() : _parent(nullptr), _allFlags(0)
+    {}
+
+    inline const TTransform* getParent() const noexcept {
         return _parent;
     }
 
-    inline const bool hasParent() noexcept {
+    inline bool hasParent() const noexcept {
         return _parent != nullptr;
     }
 
@@ -41,6 +52,9 @@ public:
     }
 
 protected:
+
+
+
 
     void notifyChildsAboutGlobalTransformNeedsUpdate() noexcept;
 
@@ -51,7 +65,7 @@ protected:
         }
     }
 
-    inline bool isGlobalTransformNeedsUpdate() const noexcept {
+    constexpr bool isGlobalTransformNeedsUpdate() const noexcept {
         return _flags.globalTransformChanged;
     }
 
@@ -60,7 +74,7 @@ protected:
         setGlobalTransformNeedsUpdate();
     }
 
-    inline bool isTransformNeedsUpdate() const noexcept {
+    constexpr bool isTransformNeedsUpdate() const noexcept {
         return _flags.transformChanged;
     }
 
@@ -73,11 +87,11 @@ protected:
         _flags.rotationChanged = false;
     }
 
-    inline bool isRotationNeedsUpdate() const noexcept {
+    constexpr bool isRotationNeedsUpdate() const noexcept {
         return _flags.rotationChanged;
     }
 
-    inline void setPositionNeedsUpdate() noexcept {
+    void setPositionNeedsUpdate() noexcept {
         _flags.positionChanged = true;
         setTransformNeedsUpdate();
     }
@@ -86,7 +100,7 @@ protected:
         _flags.positionChanged = false;
     }
 
-    inline bool isPositionNeedsUpdate() const noexcept {
+    constexpr bool isPositionNeedsUpdate() const noexcept {
         return _flags.positionChanged;
     }
 
@@ -99,7 +113,7 @@ protected:
         _flags.scaleChanged = false;
     }
 
-    inline bool isScaleNeedsUpdate() const noexcept {
+    constexpr bool isScaleNeedsUpdate() const noexcept {
         return _flags.scaleChanged;
     }
 

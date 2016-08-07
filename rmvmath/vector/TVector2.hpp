@@ -10,6 +10,7 @@
 #include "vector2x/func/TVector2_func.hpp"
 #include "vector2x/func/TVector2_func_scalar.hpp"
 #include "vector2x/func/TVector2_func_interpolation.hpp"
+#include "vector2x/func/TVector2_equal.hpp"
 
 #include "vector2x/operator/TVector2_operator.hpp"
 #include "vector2x/operator/TVector2_operator_math.hpp"
