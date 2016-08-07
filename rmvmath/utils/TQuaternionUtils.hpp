@@ -6,7 +6,6 @@
 #define RMVECTORMATH_TQUATERNIONUTILS_HPP
 
 
-
 #include "complex/quaternion/TQuaternion_def.hpp"
 #include "matrix/matrix3x3/TMatrix3x3_def.hpp"
 
@@ -17,6 +16,10 @@ namespace rmmath {
     template<typename T>
     const complex::TQuaternion<T> rotationQuaternion(const T angle, const vector::TVector3<T> &axis) {
 
+#ifdef RM_MATH_STAT
+        RM_STAT_MUL(3)
+#endif
+
         const T half_angle(angle*(T)0.5);
         const T _sin(math::sin<T>(half_angle));
 
@@ -26,78 +29,41 @@ namespace rmmath {
     template<typename T>
     const matrix::TMatrix3x3<T> rotationMatrix3x3(const complex::TQuaternion <T> &q) noexcept {
 
-        const auto ip2(2*q.i*q.i);
-        const auto jp2(2*q.j*q.j);
-        const auto kp2(2*q.k*q.k);
+#ifdef RM_MATH_STAT
+        RM_STAT_MUL(9)
+        RM_STAT_SUM(9)
+        RM_STAT_SUB(6)
+#endif
 
-        const auto ij(2*q.i*q.j);
-        const auto kw(2*q.k*q.w);
-        const auto ik(2*q.i*q.k);
-        const auto jw(2*q.j*q.w);
-        const auto jk(2*q.j*q.k);
-        const auto iw(2*q.i*q.w);
+        const T x2(q.i + q.i);
+        const T y2(q.j + q.j);
+        const T z2(q.k + q.k);
 
-        return matrix::TMatrix3x3<T>
-                (
-            (T) 1 - jp2 - kp2,
-            ij + kw,
-            ik - jw,
+        const T xx(q.i * x2);
+        const T xy(q.i * y2);
+        const T xz(q.i * z2);
 
-            ij,
-            (T) 1 - ip2 - kp2,
-            jk + iw,
+        const T yy(q.j * y2);
+        const T yz(q.j * z2);
+        const T zz(q.k * z2);
 
-            ik + jw,
-            jk - iw,
-            (T) 1 - ip2 - jp2
-                );
+        const T wx(q.w * x2);
+        const T wy(q.w * y2);
+        const T wz(q.w * z2);
 
+        return matrix::TMatrix3x3<T> (
+                (T)1 - (yy + zz),
+                xy - wz,
+                xz + wy,
 
-/*        matrix::TMatrix3x3<T> m(
-                (T)1 - jp2 - kp2,         ij + kw,          ik - jw,
-                              ij, (T)1 - ip2 - kp2,         jk + iw,
-                         ik + jw,         jk -  iw, (T)1 - ip2 - jp2
+                xy + wz,
+                (T)1 - (xx + zz),
+                yz - wx,
 
-        );*/
-        //return m;
-    }
-
-
-    template<typename T>
-    const matrix::TMatrix3x3<T> _rotationMatrix3x3(const complex::TQuaternion <T> &q) noexcept {
-        auto ip2 = q.i*q.i;
-        ip2 += ip2;
-
-        auto jp2 = q.j*q.j;
-        jp2 += jp2;
-
-        auto kp2 = q.k*q.k;
-        kp2 += kp2;
-
-        auto ij = q.i*q.j;
-        ij += ij;
-
-        auto kw = q.k*q.w;
-        kw += kw;
-
-        auto ik = q.i*q.k;
-        ik += ik;
-
-        auto jw = q.j*q.w;
-        jw += jw;
-
-        auto jk = q.j*q.k;
-        jk += jk;
-
-        auto iw = q.i*q.w;
-        iw += iw;
-
-        matrix::TMatrix3x3<T> m(
-                1 - jp2 - kp2,       ij + kw,      ik - jw,
-                           ij, 1 - ip2 - kp2,      jk + iw,
-                      ik + jw,       jk - iw, 1 - ip2 - jp2
+                xz - wy,
+                yz + wx,
+                (T)1 - (xx + yy)
         );
-        return m;
     }
 
 }

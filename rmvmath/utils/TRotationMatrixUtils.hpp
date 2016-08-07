@@ -5,6 +5,10 @@
 #ifndef RMVECTORMATH_TROTATIONMATRIXUTILS_HPP
 #define RMVECTORMATH_TROTATIONMATRIXUTILS_HPP
 
+#ifdef RM_MATH_STAT
+#include <profiler/profiler.hpp>
+#endif
+
 #include "../matrix/matrix3x3/TMatrix3x3_def.hpp"
 #include "../vector/vector3x/TVector3_def.hpp"
 
@@ -17,29 +21,22 @@ namespace rmmath {
     template <typename T>
     const matrix::TMatrix3x3<T> rotationMatrix3x3(const T angle, const vector::TVector3<T> &axis) {
 
-        const T _cos(math::cos<T>(angle));
-        const T _1_cos(1 - _cos);
-        const T _x1_cos(axis.x*_1_cos);
-        const T _xy1_cos(axis.y*_x1_cos);
-
         const T _sin(math::sin<T>(angle));
-        const T _sinx(axis.x*_sin);
-        const T _siny(axis.y*_sin);
-        const T _sinz(axis.z*_sin);
+        const T _cos(math::cos<T>(angle));
 
         return matrix::TMatrix3x3<T>(
 
-                _cos + axis.x*_x1_cos,
-                _xy1_cos - _sinz,
-                axis.z*_x1_cos +_siny,
+                _cos + axis.x*axis.x*(1 - _cos),
+                axis.x*axis.y*(1 - _cos) - axis.z*_sin,
+                axis.x*axis.z*(1 - _cos) + axis.y*_sin,
 
-                _xy1_cos + _sinz,
-                axis.y*_xy1_cos + _cos ,
-                _xy1_cos*axis.z - _sinx,
+                axis.x*axis.y*(1 - _cos) + axis.z*_sin,
+                _cos + axis.y*axis.y*(1 - _cos),
+                axis.y*axis.z*(1 - _cos) - axis.x*_sin,
 
-                axis.z*_x1_cos - _siny,
-                axis.z*_xy1_cos + _sinx,
-                _cos + axis.z*axis.z*_1_cos
+                axis.x*axis.z*(1 - _cos) - axis.y*_sin,
+                axis.y*axis.z*(1 - _cos) + axis.x*_sin,
+                _cos + axis.z*axis.z*(1 - _cos)
         );
     }
 

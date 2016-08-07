@@ -13,6 +13,8 @@
 
 #include "../../matrix4x4/TMatrix4x4_def.hpp"
 
+#include "../../../common/common.hpp"
+
 namespace rmmath {
 
     namespace matrix {
@@ -41,7 +43,7 @@ namespace rmmath {
         }
         
         template<typename T>
-        const TAffineMatrix4x4 <T> inverse(const TAffineMatrix4x4 <T> &a, bool &sucess) noexcept {
+        const TAffineMatrix4x4 <T> inverse(const TAffineMatrix4x4 <T> &a, bool *sucess) noexcept {
 
             auto v3 = a.m10 * a.m21 - a.m11 * a.m20;
             auto v6 = a.m01 * a.m20 - a.m00 * a.m21;
@@ -55,8 +57,8 @@ namespace rmmath {
             RM_STAT_SUB(3)
 #endif
 
-            if (det != 0) {
-                sucess = true;
+            if (!equal_to_zero<T>(det) ) {
+                *sucess = true;
                 auto invdet = 1 / det;
 
                 auto t2 = a.m02 * a.m21 - a.m01 * a.m22;
@@ -95,7 +97,7 @@ namespace rmmath {
 #endif
                 return result;
             }
-            sucess = false;
+            *sucess = false;
             return a;
         }
     }

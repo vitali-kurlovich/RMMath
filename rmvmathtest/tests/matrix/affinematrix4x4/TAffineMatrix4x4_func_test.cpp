@@ -456,32 +456,32 @@ TEST(inverse, matinversea4x4) {
     };
 
     bool sucess;
-    EXPECT_FLOAT_EQ(inverse(a, sucess).m00, r.m00);
+    EXPECT_FLOAT_EQ(inverse(a, &sucess).m00, r.m00);
     EXPECT_EQ(sucess, true);
-    EXPECT_FLOAT_EQ(inverse(a, sucess).m01, r.m01);
+    EXPECT_FLOAT_EQ(inverse(a, &sucess).m01, r.m01);
     EXPECT_EQ(sucess, true);
-    EXPECT_FLOAT_EQ(inverse(a, sucess).m02, r.m02);
-    EXPECT_EQ(sucess, true);
-
-    EXPECT_FLOAT_EQ(inverse(a, sucess).m10, r.m10);
-    EXPECT_EQ(sucess, true);
-    EXPECT_FLOAT_EQ(inverse(a, sucess).m11, r.m11);
-    EXPECT_EQ(sucess, true);
-    EXPECT_FLOAT_EQ(inverse(a, sucess).m12, r.m12);
+    EXPECT_FLOAT_EQ(inverse(a, &sucess).m02, r.m02);
     EXPECT_EQ(sucess, true);
 
-    EXPECT_FLOAT_EQ(inverse(a, sucess).m20, r.m20);
+    EXPECT_FLOAT_EQ(inverse(a, &sucess).m10, r.m10);
     EXPECT_EQ(sucess, true);
-    EXPECT_FLOAT_EQ(inverse(a, sucess).m21, r.m21);
+    EXPECT_FLOAT_EQ(inverse(a, &sucess).m11, r.m11);
     EXPECT_EQ(sucess, true);
-    EXPECT_FLOAT_EQ(inverse(a, sucess).m22, r.m22);
+    EXPECT_FLOAT_EQ(inverse(a, &sucess).m12, r.m12);
     EXPECT_EQ(sucess, true);
 
-    EXPECT_FLOAT_EQ(inverse(a, sucess).m30, r.m30);
+    EXPECT_FLOAT_EQ(inverse(a, &sucess).m20, r.m20);
     EXPECT_EQ(sucess, true);
-    EXPECT_FLOAT_EQ(inverse(a, sucess).m31, r.m31);
+    EXPECT_FLOAT_EQ(inverse(a, &sucess).m21, r.m21);
     EXPECT_EQ(sucess, true);
-    EXPECT_FLOAT_EQ(inverse(a, sucess).m32, r.m32);
+    EXPECT_FLOAT_EQ(inverse(a, &sucess).m22, r.m22);
+    EXPECT_EQ(sucess, true);
+
+    EXPECT_FLOAT_EQ(inverse(a, &sucess).m30, r.m30);
+    EXPECT_EQ(sucess, true);
+    EXPECT_FLOAT_EQ(inverse(a, &sucess).m31, r.m31);
+    EXPECT_EQ(sucess, true);
+    EXPECT_FLOAT_EQ(inverse(a, &sucess).m32, r.m32);
     EXPECT_EQ(sucess, true);
 
 
@@ -492,7 +492,7 @@ TEST(inverse, matinversea4x4) {
             13, 14, 15,
     };
 
-    inverse(b, sucess);
-    EXPECT_EQ(sucess, false);
+    inverse(b, &sucess);
+    EXPECT_FALSE(sucess);
 
 }

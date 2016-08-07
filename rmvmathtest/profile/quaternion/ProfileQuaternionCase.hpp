@@ -51,24 +51,6 @@ public:
             }
 
             endProfileCase("rotationMatrix3x3");
-
-
-            beginProfileCase("_rotationMatrix3x3");
-
-            for (uint32_t i = 0; i < 1000000; ++i) {
-
-                _rotationMatrix3x3(a);
-                _rotationMatrix3x3(b);
-                _rotationMatrix3x3(c);
-                _rotationMatrix3x3(d);
-                _rotationMatrix3x3(e);
-                _rotationMatrix3x3(f);
-                _rotationMatrix3x3(g);
-                _rotationMatrix3x3(h);
-            }
-
-            endProfileCase("_rotationMatrix3x3");
-
         }
 
 
