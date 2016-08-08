@@ -101,3 +101,21 @@ TEST(Utils, affineTransform) {
 
     EXPECT_TRUE(equal<float>(transform, result));
 }
+
+TEST(Utils, inverseAffineTransform) {
+
+    TQuaternion<float> qr = rotationQuaternion<float>(2.f, normalize(TVector3<float>(2.f,3.f,4.f)));
+    TVector3<float> pos(12.f, 34.f, 22.f);
+
+    auto transform = affineTRSMatrix4x4(pos, qr);
+    auto invtransform = inverseAffineTRSMatrix4x4(pos, qr);
+
+    EXPECT_TRUE(equal<float>(transform*invtransform,  TAffineMatrix4x4<float>::identity()));
+
+
+    TVector3<float> scale(7.f, -5.f, -8.f);
+    transform = affineTRSMatrix4x4(pos, qr, scale);
+    invtransform = inverseAffineTRSMatrix4x4(pos, qr, scale);
+
+    EXPECT_TRUE(equal<float>(transform*invtransform,  TAffineMatrix4x4<float>::identity()));
+}

@@ -70,7 +70,6 @@ namespace rmmath {
     }
 
 
-
     template<typename T>
     const matrix::TAffineMatrix4x4<T> affineTRSMatrix4x4(const vector::TVector3<T> &position,
                                                          const complex::TQuaternion<T> &rotation) {
@@ -207,9 +206,110 @@ namespace rmmath {
             m.m30 *= scale.x; m.m31 *= scale.y; m.m32 *= scale.z;
 
             return m;
-
     }
+
+
+    // Inverse
+
+    template<typename T>
+    const matrix::TAffineMatrix4x4<T> inverseAffineTRSMatrix4x4(const vector::TVector3<T> &position,
+                                                                const complex::TQuaternion<T> &rotation) {
+
+#ifdef RM_MATH_STAT
+            RM_STAT_MUL(9)
+        RM_STAT_SUM(9)
+        RM_STAT_SUB(6)
+#endif
+
+            const T x2(rotation.i + rotation.i);
+            const T y2(rotation.j + rotation.j);
+            const T z2(rotation.k + rotation.k);
+
+            const T xx(rotation.i * x2);
+            const T xy(rotation.i * y2);
+            const T xz(rotation.i * z2);
+
+            const T yy(rotation.j * y2);
+            const T yz(rotation.j * z2);
+            const T zz(rotation.k * z2);
+
+            const T wx(rotation.w * x2);
+            const T wy(rotation.w * y2);
+            const T wz(rotation.w * z2);
+
+            matrix::TAffineMatrix4x4<T> m(
+
+                    (T)1 - (yy + zz), /* a */ xy + wz, /* d */ xz - wy, /* g */
+                    xy - wz, /* b */ (T)1 - (xx + zz), /* e */ yz + wx, /* h */
+                    xz + wy, /* c */          yz - wx, /* f */ (T)1 - (xx + yy), /* j */
+
+                    -position.x,
+                    -position.y,
+                    -position.z
+            );
+            return m;
+    };
+    
+
+    template<typename T>
+    const matrix::TAffineMatrix4x4<T> inverseAffineTRSMatrix4x4(const vector::TVector3<T> &position,
+                                                                const complex::TQuaternion<T> &rotation,
+                                                                const vector::TVector3<T> &scale) {
+
+#ifdef RM_MATH_STAT
+            RM_STAT_MUL(9)
+            RM_STAT_SUM(9)
+            RM_STAT_SUB(6)
+#endif
+
+            const T x2(rotation.i + rotation.i);
+            const T y2(rotation.j + rotation.j);
+            const T z2(rotation.k + rotation.k);
+
+            const T xx(rotation.i * x2);
+            const T xy(rotation.i * y2);
+            const T xz(rotation.i * z2);
+
+            const T yy(rotation.j * y2);
+            const T yz(rotation.j * z2);
+            const T zz(rotation.k * z2);
+
+            const T wx(rotation.w * x2);
+            const T wy(rotation.w * y2);
+            const T wz(rotation.w * z2);
+
+            const T sx( (T)1/scale.x);
+            const T sy( (T)1/scale.y);
+            const T sz( (T)1/scale.z);
+
+#ifdef RM_MATH_STAT
+            RM_STAT_MUL(9)
+            RM_STAT_DIV(3)
+#endif
+
+            return matrix::TAffineMatrix4x4<T>(
+
+                    sx - sx*(yy + zz),
+                    sx*(xy + wz),
+                    sx*(xz - wy),
+
+                    sy*(xy - wz),
+                    sy - sy*(xx + zz),
+                    sy*(yz + wx),
+
+                    sz*(xz + wy),
+                    sz*(yz - wx),
+                    sz - sz*(xx + yy),
+
+                    -position.x,
+                    -position.y,
+                    -position.z
+            );
+    };
+
+
 }
+
 
 
 
