@@ -239,9 +239,17 @@ namespace rmmath {
 
             matrix::TAffineMatrix4x4<T> m(
 
-                    (T)1 - (yy + zz), /* a */ xy + wz, /* d */ xz - wy, /* g */
-                    xy - wz, /* b */ (T)1 - (xx + zz), /* e */ yz + wx, /* h */
-                    xz + wy, /* c */          yz - wx, /* f */ (T)1 - (xx + yy), /* j */
+                    (T)1 - (yy + zz),
+                    xy + wz,
+                    xz - wy,
+
+                    xy - wz,
+                    (T)1 - (xx + zz),
+                    yz + wx,
+
+                    xz + wy,
+                    yz - wx,
+                    (T)1 - (xx + yy),
 
                     -position.x,
                     -position.y,
@@ -249,7 +257,7 @@ namespace rmmath {
             );
             return m;
     };
-    
+
 
     template<typename T>
     const matrix::TAffineMatrix4x4<T> inverseAffineTRSMatrix4x4(const vector::TVector3<T> &position,
@@ -306,8 +314,6 @@ namespace rmmath {
                     -position.z
             );
     };
-
-
 }
 
 
