@@ -68,3 +68,9 @@ TEST(Utils, quaternion) {
     EXPECT_TRUE(equal<float>(axisMatrix, resultAxis));
 
 }
+
+
+
+TEST(Utils, affineTransform) {
+
+}
