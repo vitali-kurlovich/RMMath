@@ -10,6 +10,8 @@
 #include <utils/TRotationMatrixUtils.hpp>
 
 #include "../matrix/TMatrix3x3_test_types.h"
+#include "../matrix/TAffineMatrix4x4_test_types.h"
+
 #include <vector/TVector3.hpp>
 
 using namespace rmmath;
@@ -73,4 +75,29 @@ TEST(Utils, quaternion) {
 
 TEST(Utils, affineTransform) {
 
+    TQuaternion<float> qr = rotationQuaternion<float>(2.f, normalize(TVector3<float>(2.f,3.f,4.f)));
+    TVector3<float> pos(12.f, 34.f, 22.f);
+
+    auto transform = affineTRSMatrix4x4(pos, qr);
+
+    tamat4x4f result(
+            -0.220816238403, -0.382413275495, 0.897218075823,
+            0.968405069928, 0.0233470092778, 0.248287208077,
+            -0.115895683245, 0.923696380789, 0.365175556031,
+            27.7262724853, 16.5261593869, 27.2422442172
+    );
+
+    EXPECT_TRUE(equal<float>(transform, result));
+
+    TVector3<float> scale(7.f, -5.f, -8.f);
+    transform = affineTRSMatrix4x4(pos, qr, scale);
+
+    result = tamat4x4f(
+            -1.54571366882, 1.91206637748, -7.17774460658,
+            6.77883548950,-0.116735046389, -1.98629766462,
+            -0.811269782714, -4.61848190395, -2.92140444824,
+            194.083907397, -82.6307969343, -217.937953737
+    );
+
+    EXPECT_TRUE(equal<float>(transform, result));
 }

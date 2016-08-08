@@ -7,6 +7,7 @@
 #include "../TAffineMatrix4x4_test_types.h"
 #include "../../vector/affinevector4/TAffineVector4_test_types.h"
 
+#include <math.h>
 
 TEST(affinematrix4x4, constructor) {
     tamat4x4i identity = {
@@ -49,8 +50,6 @@ TEST(affinematrix4x4, constructor) {
     EXPECT_EQ(num.row[2], tvec3i(7, 8, 9));
     EXPECT_EQ(num.row[3], tvec3i(10, 11, 12));
 
-
-
     EXPECT_EQ(b[0], tvec3i(1, 2, 3));
     EXPECT_EQ(b[1], tvec3i(4, 5, 6));
     EXPECT_EQ(b[2], tvec3i(7, 8, 9));
@@ -71,6 +70,20 @@ TEST(affinematrix4x4, constructor) {
 
 }
 
+TEST(affinematrix4x4, equal) {
+    tamat4x4f a(1,2,3, 4,5,6, 7,8,9, 10,11,12);
+
+    tamat4x4f b(
+            1.f*logf(M_E), 2.f*logf(M_E), 3.f*logf(M_E),
+            4.f*logf(M_E), 5.f*logf(M_E), 6.f*logf(M_E),
+            7.f*logf(M_E), 8.f*logf(M_E), 9.f*logf(M_E),
+            10.f*logf(M_E), 11.f*logf(M_E), 12.f*logf(M_E)
+    );
+
+    EXPECT_NE(a, b);
+    EXPECT_TRUE(equal<float>(a, b));
+
+}
 
 // Mul
 
