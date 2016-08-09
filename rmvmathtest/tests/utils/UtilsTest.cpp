@@ -119,3 +119,42 @@ TEST(Utils, inverseAffineTransform) {
 
     EXPECT_TRUE(equal<float>(transform*invtransform,  TAffineMatrix4x4<float>::identity()));
 }
+
+
+TEST(Utils, convert) {
+
+    TQuaternion<float> qr = rotationQuaternion<float>(2.f, normalize(TVector3<float>(2.f,3.f,4.f)));
+    TVector3<float> pos(12.f, 34.f, 22.f);
+   // TVector3<float> scale(1.f, 5.f, 8.f);
+    TVector3<float> scale(2.f, 0.5f, 1.f);
+
+    auto transform = affineTRSMatrix4x4(pos, qr, scale);
+
+
+    TVector3<float> s;
+    TQuaternion<float> r;
+    TVector3<float> p;
+    convertTRSTransform(transform, &p, &r, &s);
+
+    EXPECT_TRUE(equal<float>(scale, s));
+    EXPECT_TRUE(equal<float>(qr, r));
+    EXPECT_TRUE(equal<float>(pos, p));
+
+    convertTRSTransform(TAffineMatrix4x4<float>::identity(), &p, &r, &s);
+
+    auto mat = rotationMatrix3x3(r);
+    EXPECT_TRUE(equal<float>(TVector3<float>(1,1,1), s));
+    EXPECT_TRUE(equal<float>(TQuaternion<float>::identity(), r));
+    EXPECT_TRUE(equal<float>(TVector3<float>::zero(), p));
+
+
+    scale = TVector3<float> (1.f, 1.f, 1.f);
+    transform = affineTRSMatrix4x4(pos, qr, scale);
+
+    convertTRSTransform(transform, &p, &r, &s);
+
+    EXPECT_TRUE(equal<float>(scale, s));
+    EXPECT_TRUE(equal<float>(qr, r));
+    EXPECT_TRUE(equal<float>(pos, p));
+
+}

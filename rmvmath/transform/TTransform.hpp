@@ -31,19 +31,16 @@ private:
 
         } _flags;
 
-        unsigned int _allFlags;
+        unsigned int _allFlags{0};
     };
 
 public:
 
-     TTransform() : _parent(nullptr), _allFlags(0)
-    {}
-
-    inline const TTransform* getParent() const noexcept {
+    constexpr TTransform* getParent() const noexcept {
         return _parent;
     }
 
-    inline bool hasParent() const noexcept {
+    constexpr bool hasParent() const noexcept {
         return _parent != nullptr;
     }
 
@@ -53,10 +50,15 @@ public:
 
 protected:
 
+    inline void setParent(TTransform* parent) noexcept {
+        _parent = parent;
+    }
 
-
-
-    void notifyChildsAboutGlobalTransformNeedsUpdate() noexcept;
+    void notifyChildsAboutGlobalTransformNeedsUpdate() noexcept {
+        for(TTransform* child : getChilds()) {
+            child->setGlobalTransformNeedsUpdate();
+        }
+    }
 
     void setGlobalTransformNeedsUpdate() noexcept {
         if (!_flags.globalTransformChanged) {
@@ -71,7 +73,6 @@ protected:
 
     inline void setTransformNeedsUpdate() noexcept {
         _flags.transformChanged = true;
-        setGlobalTransformNeedsUpdate();
     }
 
     constexpr bool isTransformNeedsUpdate() const noexcept {
@@ -118,9 +119,9 @@ protected:
     }
 
     inline void setTransformUpdated() noexcept {
-        _flags.transformChanged = true;
+        _flags.transformChanged = false;
         setRotationUpdated();
-        setTransformUpdated();
+        setPositionUpdated();
         setScaleUpdated();
     }
 
@@ -128,12 +129,5 @@ protected:
         _flags.globalTransformChanged = false;
     }
 };
-
-
-void TTransform::notifyChildsAboutGlobalTransformNeedsUpdate() noexcept {
-    for(TTransform* child : getChilds()) {
-        child->setGlobalTransformNeedsUpdate();
-    }
-}
 
 #endif //RMVECTORMATH_TTRANSFORM_HPP

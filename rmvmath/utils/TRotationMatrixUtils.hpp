@@ -40,8 +40,6 @@ namespace rmmath {
         );
     }
 
-
-
     template <typename T>
     const matrix::TMatrix3x3<T> rotationXMatrix3x3(const T angle) {
         const T _cos(math::cos<T>(angle));

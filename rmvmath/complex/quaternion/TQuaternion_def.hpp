@@ -54,7 +54,7 @@ namespace rmmath {
 
 
             static const TQuaternion<T>& identity() {
-                static TQuaternion<T> identity(0, 0, 0, 1);
+                static TQuaternion<T> identity(1, 0, 0, 0);
                 return identity;
             }
         };

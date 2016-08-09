@@ -10,6 +10,7 @@
 
 #include "matrix/ProfileMatrixCase.hpp"
 #include "quaternion/ProfileQuaternionCase.hpp"
+#include "transform/ProfileTransformUtilsCase.hpp"
 
 #include "ProfileCase.hpp"
 
@@ -23,7 +24,8 @@ int  main(int argc, char* argv[]) {
 
     //ProfileMatrixCase* mc = new ProfileMatrixCase(&prof);
     //prof.addProfileCases(new ProfileMatrixCase(&prof));
-    prof.addProfileCases(new ProfileQuaternionCase(&prof));
+  //  prof.addProfileCases(new ProfileQuaternionCase(&prof));
+    prof.addProfileCases(new ProfileTransformUtilsCase(&prof));
 
     prof.run();
 
