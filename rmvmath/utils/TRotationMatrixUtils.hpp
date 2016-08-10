@@ -5,127 +5,132 @@
 #ifndef RMVECTORMATH_TROTATIONMATRIXUTILS_HPP
 #define RMVECTORMATH_TROTATIONMATRIXUTILS_HPP
 
-#ifdef RM_MATH_STAT
-#include <profiler/profiler.hpp>
-#endif
-
-#include "../matrix/matrix3x3/TMatrix3x3_def.hpp"
-#include "../vector/vector3x/TVector3_def.hpp"
 
 #include <math.h>
 
 #include "../common/trigonometry.hpp"
 
+#include "../matrix/matrix3x3/TMatrix3x3_def.hpp"
+#include "../vector/vector3x/TVector3_def.hpp"
+
+
+#ifdef RM_MATH_STAT
+#include <profiler/profiler.hpp>
+#endif
+
 namespace rmmath {
 
-    template <typename T>
-    const matrix::TMatrix3x3<T> rotationMatrix3x3(const T angle, const vector::TVector3<T> &axis) {
+    namespace utils {
 
-        const T _sin(math::sin<T>(angle));
-        const T _cos(math::cos<T>(angle));
+        template<typename T>
+        const matrix::TMatrix3x3<T> rotationMatrix3x3(const T angle, const vector::TVector3<T> &axis) {
 
-        return matrix::TMatrix3x3<T>(
+            const T _sin(math::sin<T>(angle));
+            const T _cos(math::cos<T>(angle));
 
-                _cos + axis.x*axis.x*(1 - _cos),
-                axis.x*axis.y*(1 - _cos) - axis.z*_sin,
-                axis.x*axis.z*(1 - _cos) + axis.y*_sin,
+            return matrix::TMatrix3x3<T>(
 
-                axis.x*axis.y*(1 - _cos) + axis.z*_sin,
-                _cos + axis.y*axis.y*(1 - _cos),
-                axis.y*axis.z*(1 - _cos) - axis.x*_sin,
+                    _cos + axis.x * axis.x * (1 - _cos),
+                    axis.x * axis.y * (1 - _cos) - axis.z * _sin,
+                    axis.x * axis.z * (1 - _cos) + axis.y * _sin,
 
-                axis.x*axis.z*(1 - _cos) - axis.y*_sin,
-                axis.y*axis.z*(1 - _cos) + axis.x*_sin,
-                _cos + axis.z*axis.z*(1 - _cos)
-        );
-    }
+                    axis.x * axis.y * (1 - _cos) + axis.z * _sin,
+                    _cos + axis.y * axis.y * (1 - _cos),
+                    axis.y * axis.z * (1 - _cos) - axis.x * _sin,
 
-    template <typename T>
-    const matrix::TMatrix3x3<T> rotationXMatrix3x3(const T angle) {
-        const T _cos(math::cos<T>(angle));
-        const T _sin(math::sin<T>(angle));
+                    axis.x * axis.z * (1 - _cos) - axis.y * _sin,
+                    axis.y * axis.z * (1 - _cos) + axis.x * _sin,
+                    _cos + axis.z * axis.z * (1 - _cos)
+            );
+        }
 
-        return matrix::TMatrix3x3<T>(
-                1, 0, 0,
-                0, _cos, -_sin,
-                0, _sin, _cos
-        );
-    }
+        template<typename T>
+        const matrix::TMatrix3x3<T> rotationXMatrix3x3(const T angle) {
+            const T _cos(math::cos<T>(angle));
+            const T _sin(math::sin<T>(angle));
 
-    template <typename T>
-    const matrix::TMatrix3x3<T> rotationYMatrix3x3(const T angle) {
-        const T _cos(math::cos<T>(angle));
-        const T _sin(math::sin<T>(angle));
+            return matrix::TMatrix3x3<T>(
+                    1, 0, 0,
+                    0, _cos, -_sin,
+                    0, _sin, _cos
+            );
+        }
 
-        return matrix::TMatrix3x3<T>(
-                 _cos, 0, _sin,
-                    0, 1,    0,
-                -_sin, 0, _cos
-        );
-    }
+        template<typename T>
+        const matrix::TMatrix3x3<T> rotationYMatrix3x3(const T angle) {
+            const T _cos(math::cos<T>(angle));
+            const T _sin(math::sin<T>(angle));
 
-
-    template <typename T>
-    const matrix::TMatrix3x3<T> rotationZMatrix3x3(const T angle) {
-        const T _cos(math::cos<T>(angle));
-        const T _sin(math::sin<T>(angle));
-
-        return matrix::TMatrix3x3<T>(
-                _cos, -_sin, 0,
-                _sin, _cos, 0,
-                0, 0, 1
-        );
-    }
-
-    template <typename T>
-    const matrix::TMatrix3x3<T> rotationXYZMatrix3x3(const T x_angle, const T y_angle, const T z_angle) {
-        const T _cosa(math::cos<T>(x_angle));
-        const T _sina(math::sin<T>(x_angle));
-
-        const T _cosb(math::cos<T>(y_angle));
-        const T _sinb(math::sin<T>(y_angle));
-
-        const T _cosc(math::cos<T>(z_angle));
-        const T _sinc(math::sin<T>(z_angle));
-
-        return matrix::TMatrix3x3<T>(
-                _cosb*_cosc,
-                -_cosb*_sinc,
-                _sinb,
-
-                _cosc*_sina*_sinb + _cosa*_sinc,
-                _cosa*_cosc - _sina*_sinb*_sinc,
-                -_cosb*_sina,
-
-                -_cosa*_cosc*_sinb + _sina*_sinc,
-                _cosc*_sina +_cosa*_sinb*_sinc,
-                _cosa*_cosb
-        );
-    }
+            return matrix::TMatrix3x3<T>(
+                    _cos, 0, _sin,
+                    0, 1, 0,
+                    -_sin, 0, _cos
+            );
+        }
 
 
-    template <typename T>
-    const matrix::TMatrix3x3<T> _rotationMatrix3x3(const T angle, const vector::TVector3<T> &axis) {
+        template<typename T>
+        const matrix::TMatrix3x3<T> rotationZMatrix3x3(const T angle) {
+            const T _cos(math::cos<T>(angle));
+            const T _sin(math::sin<T>(angle));
 
-        T _cos = cos(angle);
-        T _sin = sin(angle);
+            return matrix::TMatrix3x3<T>(
+                    _cos, -_sin, 0,
+                    _sin, _cos, 0,
+                    0, 0, 1
+            );
+        }
 
-        matrix::TMatrix3x3<T> m (
+        template<typename T>
+        const matrix::TMatrix3x3<T> rotationXYZMatrix3x3(const T x_angle, const T y_angle, const T z_angle) {
+            const T _cosa(math::cos<T>(x_angle));
+            const T _sina(math::sin<T>(x_angle));
 
-                _cos + axis.x*axis.x*(1 - _cos),
-                axis.x*axis.y*(1 - _cos) - axis.z*_sin,
-                axis.x*axis.z*(1 - _cos) + axis.y*_sin,
+            const T _cosb(math::cos<T>(y_angle));
+            const T _sinb(math::sin<T>(y_angle));
 
-                axis.x*axis.y*(1 - _cos) + axis.z*_sin,
-                _cos + axis.y*axis.y*(1 - _cos),
-                axis.y*axis.z*(1 - _cos) - axis.x*_sin,
+            const T _cosc(math::cos<T>(z_angle));
+            const T _sinc(math::sin<T>(z_angle));
 
-                axis.x*axis.z*(1 - _cos) - axis.y*_sin,
-                axis.y*axis.z*(1 - _cos) + axis.x*_sin,
-                _cos + axis.z*axis.z*(1 - _cos)
-        );
+            return matrix::TMatrix3x3<T>(
+                    _cosb * _cosc,
+                    -_cosb * _sinc,
+                    _sinb,
 
-        return m;
+                    _cosc * _sina * _sinb + _cosa * _sinc,
+                    _cosa * _cosc - _sina * _sinb * _sinc,
+                    -_cosb * _sina,
+
+                    -_cosa * _cosc * _sinb + _sina * _sinc,
+                    _cosc * _sina + _cosa * _sinb * _sinc,
+                    _cosa * _cosb
+            );
+        }
+
+
+        template<typename T>
+        const matrix::TMatrix3x3<T> _rotationMatrix3x3(const T angle, const vector::TVector3<T> &axis) {
+
+            T _cos = cos(angle);
+            T _sin = sin(angle);
+
+            matrix::TMatrix3x3<T> m(
+
+                    _cos + axis.x * axis.x * (1 - _cos),
+                    axis.x * axis.y * (1 - _cos) - axis.z * _sin,
+                    axis.x * axis.z * (1 - _cos) + axis.y * _sin,
+
+                    axis.x * axis.y * (1 - _cos) + axis.z * _sin,
+                    _cos + axis.y * axis.y * (1 - _cos),
+                    axis.y * axis.z * (1 - _cos) - axis.x * _sin,
+
+                    axis.x * axis.z * (1 - _cos) - axis.y * _sin,
+                    axis.y * axis.z * (1 - _cos) + axis.x * _sin,
+                    _cos + axis.z * axis.z * (1 - _cos)
+            );
+
+            return m;
+        }
     }
 }
 

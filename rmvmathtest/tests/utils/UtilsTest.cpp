@@ -17,7 +17,7 @@
 using namespace rmmath;
 using namespace rmmath::matrix;
 using namespace rmmath::complex;
-
+using namespace rmmath::utils;
 
 TEST(Utils, rotation) {
 

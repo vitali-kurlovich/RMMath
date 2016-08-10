@@ -14,6 +14,7 @@
 using namespace rmmath;
 using namespace rmmath::complex;
 using namespace rmmath::vector;
+using namespace rmmath::utils;
 
 class ProfileQuaternionCase : public profiler::ProfileCase {
 
