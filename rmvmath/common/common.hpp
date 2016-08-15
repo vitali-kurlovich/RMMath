@@ -13,13 +13,19 @@ namespace rmmath {
     }
 
     template <typename T>
-    constexpr bool equal_to_zero(const float value) noexcept {
-        return  value > -0.0000476838f && value < 0.0000476838f;
+    constexpr bool equal_to_zero(const T value, const T precision) noexcept {
+        return  value > -precision && value < precision;
     }
 
     template <typename T>
+    constexpr bool equal_to_zero(const float value) noexcept {
+        return  equal_to_zero(value, 0.000476838f);
+    }
+
+
+    template <typename T>
     constexpr bool equal_to_zero(const double value) noexcept {
-        return  value > -1.332268e-16 && value < 1.332268e-16;
+        return  equal_to_zero(value, 1.332268e-16);
     }
 
     template <typename T>
@@ -49,6 +55,12 @@ namespace rmmath {
     }
 
     template <typename T>
+    constexpr bool equal(const T a, const T b, const T precision) noexcept {
+        return equal_to_zero<T>(a-b, precision);
+    }
+
+
+    template <typename T>
     constexpr bool equal(const float a, const float b) noexcept {
         return equal_to_zero<float>(a-b);
     }
@@ -67,6 +79,7 @@ namespace rmmath {
     constexpr bool equal(const double a, const float b) noexcept {
         return equal_to_zero<float>((float)a-b);
     }
+
 }
 
 #endif //RMVECTORMATH_COMMON_HPP

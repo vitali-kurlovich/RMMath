@@ -6,9 +6,7 @@
 #define RMVECTORMATH_TROTATIONMATRIXUTILS_HPP
 
 
-#include <math.h>
-
-#include "../common/trigonometry.hpp"
+#include <cmath>
 
 #include "../matrix/matrix3x3/TMatrix3x3_def.hpp"
 #include "../vector/vector3x/TVector3_def.hpp"
@@ -25,8 +23,8 @@ namespace rmmath {
         template<typename T>
         const matrix::TMatrix3x3<T> rotationMatrix3x3(const T angle, const vector::TVector3<T> &axis) {
 
-            const T _sin(math::sin<T>(angle));
-            const T _cos(math::cos<T>(angle));
+            const T _sin(std::sin(angle));
+            const T _cos(std::cos(angle));
 
             return matrix::TMatrix3x3<T>(
 
@@ -46,8 +44,8 @@ namespace rmmath {
 
         template<typename T>
         const matrix::TMatrix3x3<T> rotationXMatrix3x3(const T angle) {
-            const T _cos(math::cos<T>(angle));
-            const T _sin(math::sin<T>(angle));
+            const T _cos(std::cos(angle));
+            const T _sin(std::sin(angle));
 
             return matrix::TMatrix3x3<T>(
                     1, 0, 0,
@@ -58,8 +56,8 @@ namespace rmmath {
 
         template<typename T>
         const matrix::TMatrix3x3<T> rotationYMatrix3x3(const T angle) {
-            const T _cos(math::cos<T>(angle));
-            const T _sin(math::sin<T>(angle));
+            const T _cos(std::cos(angle));
+            const T _sin(std::sin(angle));
 
             return matrix::TMatrix3x3<T>(
                     _cos, 0, _sin,
@@ -71,8 +69,8 @@ namespace rmmath {
 
         template<typename T>
         const matrix::TMatrix3x3<T> rotationZMatrix3x3(const T angle) {
-            const T _cos(math::cos<T>(angle));
-            const T _sin(math::sin<T>(angle));
+            const T _cos(std::cos(angle));
+            const T _sin(std::sin(angle));
 
             return matrix::TMatrix3x3<T>(
                     _cos, -_sin, 0,
@@ -83,14 +81,14 @@ namespace rmmath {
 
         template<typename T>
         const matrix::TMatrix3x3<T> rotationXYZMatrix3x3(const T x_angle, const T y_angle, const T z_angle) {
-            const T _cosa(math::cos<T>(x_angle));
-            const T _sina(math::sin<T>(x_angle));
+            const T _cosa(std::cos(x_angle));
+            const T _sina(std::sin(x_angle));
 
-            const T _cosb(math::cos<T>(y_angle));
-            const T _sinb(math::sin<T>(y_angle));
+            const T _cosb(std::cos(y_angle));
+            const T _sinb(std::sin(y_angle));
 
-            const T _cosc(math::cos<T>(z_angle));
-            const T _sinc(math::sin<T>(z_angle));
+            const T _cosc(std::cos(z_angle));
+            const T _sinc(std::sin(z_angle));
 
             return matrix::TMatrix3x3<T>(
                     _cosb * _cosc,
@@ -111,8 +109,8 @@ namespace rmmath {
         template<typename T>
         const matrix::TMatrix3x3<T> _rotationMatrix3x3(const T angle, const vector::TVector3<T> &axis) {
 
-            T _cos = cos(angle);
-            T _sin = sin(angle);
+            T _cos = std::cos(angle);
+            T _sin = std::sin(angle);
 
             matrix::TMatrix3x3<T> m(
 

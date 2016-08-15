@@ -125,7 +125,6 @@ TEST(Utils, convert) {
 
     TQuaternion<float> qr = rotationQuaternion<float>(2.f, normalize(TVector3<float>(2.f,3.f,4.f)));
     TVector3<float> pos(12.f, 34.f, 22.f);
-   // TVector3<float> scale(1.f, 5.f, 8.f);
     TVector3<float> scale(2.f, 0.5f, 1.f);
 
     auto transform = affineTRSMatrix4x4(pos, qr, scale);
@@ -156,5 +155,155 @@ TEST(Utils, convert) {
     EXPECT_TRUE(equal<float>(scale, s));
     EXPECT_TRUE(equal<float>(qr, r));
     EXPECT_TRUE(equal<float>(pos, p));
+
+
+
+
+    transform = TAffineMatrix4x4<float>(
+            -1, 0, 0,
+            0, -1, 0,
+            0, 0, 1,
+            0, 0, 0
+    );
+
+    convertTRSTransform(transform, &p, &r, &s);
+    auto trs = affineTRSMatrix4x4(p, r, s);
+    EXPECT_TRUE(equal<float>(trs, transform));
+
+
+
+
+
+    scale = TVector3<float> (1.f, 1.f, 1.f);
+    transform = affineTRSMatrix4x4(pos, qr, scale);
+    convertTRSTransform(transform, &p, &r, &s);
+    trs = affineTRSMatrix4x4(p, r, s);
+
+    EXPECT_TRUE(equal<float>(trs, transform));
+
+
+    scale = TVector3<float> (1.f, 1.f, -1.f);
+    transform = affineTRSMatrix4x4(pos, qr, scale);
+    convertTRSTransform(transform, &p, &r, &s);
+    trs = affineTRSMatrix4x4(p, r, s);
+
+    EXPECT_TRUE(equal<float>(trs, transform));
+
+
+    scale = TVector3<float> (1.f, -1.f, 1.f);
+    transform = affineTRSMatrix4x4(pos, qr, scale);
+    convertTRSTransform(transform, &p, &r, &s);
+    trs = affineTRSMatrix4x4(p, r, s);
+
+    EXPECT_TRUE(equal<float>(trs, transform));
+
+
+    scale = TVector3<float> (1.f, -1.f, -1.f);
+    transform = affineTRSMatrix4x4(pos, qr, scale);
+    convertTRSTransform(transform, &p, &r, &s);
+    trs = affineTRSMatrix4x4(p, r, s);
+
+    EXPECT_TRUE(equal<float>(trs, transform));
+
+    scale = TVector3<float> (-1.f, 1.f, 1.f);
+    transform = affineTRSMatrix4x4(pos, qr, scale);
+    convertTRSTransform(transform, &p, &r, &s);
+    trs = affineTRSMatrix4x4(p, r, s);
+
+    EXPECT_TRUE(equal<float>(trs, transform));
+
+
+    scale = TVector3<float> (-1.f, 1.f, -1.f);
+    transform = affineTRSMatrix4x4(pos, qr, scale);
+    convertTRSTransform(transform, &p, &r, &s);
+    trs = affineTRSMatrix4x4(p, r, s);
+
+    EXPECT_TRUE(equal<float>(trs, transform));
+
+
+    scale = TVector3<float> (-1.f, -1.f, 1.f);
+    transform = affineTRSMatrix4x4(pos, qr, scale);
+    convertTRSTransform(transform, &p, &r, &s);
+    trs = affineTRSMatrix4x4(p, r, s);
+
+    EXPECT_TRUE(equal<float>(trs, transform));
+
+
+    scale = TVector3<float> (-1.f, -1.f, -1.f);
+    transform = affineTRSMatrix4x4(pos, qr, scale);
+    convertTRSTransform(transform, &p, &r, &s);
+    trs = affineTRSMatrix4x4(p, r, s);
+
+    EXPECT_TRUE(equal<float>(trs, transform));
+
+
+
+
+
+
+
+
+
+    scale = TVector3<float> (2.f, 3.f, 4.f);
+    transform = affineTRSMatrix4x4(pos, qr, scale);
+    convertTRSTransform(transform, &p, &r, &s);
+    trs = affineTRSMatrix4x4(p, r, s);
+
+    EXPECT_TRUE(equal<float>(trs, transform));
+
+
+    scale = TVector3<float> (2.f, 3.f, -4.f);
+    transform = affineTRSMatrix4x4(pos, qr, scale);
+    convertTRSTransform(transform, &p, &r, &s);
+    trs = affineTRSMatrix4x4(p, r, s);
+
+    EXPECT_TRUE(equal<float>(trs, transform));
+
+
+    scale = TVector3<float> (2.f, -3.f, 4.f);
+    transform = affineTRSMatrix4x4(pos, qr, scale);
+    convertTRSTransform(transform, &p, &r, &s);
+    trs = affineTRSMatrix4x4(p, r, s);
+
+    EXPECT_TRUE(equal<float>(trs, transform));
+
+
+    scale = TVector3<float> (2.f, -3.f, -4.f);
+    transform = affineTRSMatrix4x4(pos, qr, scale);
+    convertTRSTransform(transform, &p, &r, &s);
+    trs = affineTRSMatrix4x4(p, r, s);
+
+    EXPECT_TRUE(equal<float>(trs, transform));
+
+    scale = TVector3<float> (-2.f, 3.f, 4.f);
+    transform = affineTRSMatrix4x4(pos, qr, scale);
+    convertTRSTransform(transform, &p, &r, &s);
+    trs = affineTRSMatrix4x4(p, r, s);
+
+    EXPECT_TRUE(equal<float>(trs, transform));
+
+
+    scale = TVector3<float> (-2.f, 3.f, -4.f);
+    transform = affineTRSMatrix4x4(pos, qr, scale);
+    convertTRSTransform(transform, &p, &r, &s);
+    trs = affineTRSMatrix4x4(p, r, s);
+
+    EXPECT_TRUE(equal<float>(trs, transform));
+
+
+    scale = TVector3<float> (-2.f, -3.f, 4.f);
+    transform = affineTRSMatrix4x4(pos, qr, scale);
+    convertTRSTransform(transform, &p, &r, &s);
+    trs = affineTRSMatrix4x4(p, r, s);
+
+    EXPECT_TRUE(equal<float>(trs, transform));
+
+
+    scale = TVector3<float> (-2.f, -3.f, -4.f);
+    transform = affineTRSMatrix4x4(pos, qr, scale);
+    convertTRSTransform(transform, &p, &r, &s);
+    trs = affineTRSMatrix4x4(p, r, s);
+
+    EXPECT_TRUE(equal<float>(trs, transform));
 
 }

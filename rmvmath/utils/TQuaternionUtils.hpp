@@ -5,10 +5,9 @@
 #ifndef RMVECTORMATH_TQUATERNIONUTILS_HPP
 #define RMVECTORMATH_TQUATERNIONUTILS_HPP
 
-#include "common/common.hpp"
-#include "common/arithmetic.hpp"
-#include "common/trigonometry.hpp"
+#include <cmath>
 
+#include "common/common.hpp"
 
 #include "complex/quaternion/TQuaternion_def.hpp"
 #include "matrix/matrix3x3/TMatrix3x3_def.hpp"
@@ -32,9 +31,9 @@ namespace rmmath {
 #endif
 
             const T half_angle(angle * (T) 0.5);
-            const T _sin(math::sin<T>(half_angle));
+            const T _sin(std::sin(half_angle));
 
-            return complex::TQuaternion<T>(math::cos<T>(half_angle), axis.x * _sin, axis.y * _sin, axis.z * _sin);
+            return complex::TQuaternion<T>(std::cos(half_angle), axis.x * _sin, axis.y * _sin, axis.z * _sin);
         }
 
         template<typename T>
@@ -278,7 +277,7 @@ namespace rmmath {
         template<typename T>
         const matrix::TAffineMatrix4x4<T> inverseAffineTRSMatrix4x4(const vector::TVector3<T> &position,
                                                                     const complex::TQuaternion<T> &rotation,
-                                                                    const vector::TVector3<T> &scale) {
+                                                                    const vector::TVector3<T> &scale) noexcept {
 
 #ifdef RM_MATH_STAT
             RM_STAT_MUL(9)
@@ -336,83 +335,85 @@ namespace rmmath {
         void convertTRSTransform(const matrix::TAffineMatrix4x4<T> &t,
                                  vector::TVector3<T> *position,
                                  complex::TQuaternion<T> *rotation,
-                                 vector::TVector3<T> *scale) {
-
+                                 vector::TVector3<T> *scale) noexcept {
 #ifdef RM_MATH_STAT
-            RM_STAT_MUL(18 + 13)
-            RM_STAT_SUM(7)
-            RM_STAT_SUB(10)
+            RM_STAT_MUL(9)
+            RM_STAT_SUM(2)
+            RM_STAT_SUB(3)
 #endif
 
-            const T x0(t.m02 * t.m11 - t.m01 * t.m12);
-            const T x1(t.m02 * t.m21 - t.m01 * t.m22);
-            const T x2(t.m12 * t.m21 - t.m11 * t.m22);
+            const auto vx(t.m01 * t.m12 - t.m02 * t.m11);
+            const auto vy(t.m02 * t.m10 - t.m00 * t.m12);
+            const auto vz(t.m00 * t.m11 - t.m01 * t.m10);
 
-            const T y0(t.m02 * t.m10 - t.m00 * t.m12);
-            const T y1(t.m02 * t.m20 - t.m00 * t.m22);
-            const T y2(t.m12 * t.m20 - t.m10 * t.m22);
+            const auto det(t.m20*vx + t.m21*vy + t.m22*vz);  // sx*sy*sz -> det[rotationMatrix]
 
-            const T z0(t.m01 * t.m10 - t.m00 * t.m11);
-            const T z1(t.m01 * t.m20 - t.m00 * t.m21);
-            const T z2(t.m11 * t.m20 - t.m10 * t.m21);
-
-            T mm(x0 * t.m20 - y0 * t.m21 + z0 * t.m22);
-
-            mm *= mm;
-
-            T invsx = x0 * x0 + x1 * x1 + x2 * x2;
-            T invsy = y0 * y0 + y1 * y1 + y2 * y2;
-            T invsz = z0 * z0 + z1 * z1 + z2 * z2;
-
-            bool scaled = false;
-
-            if (rmmath::equal_to_one<T>(mm)) {
-
-                if (!rmmath::equal_to_one<T>(invsx)) {
-                    scaled = true;
-                    invsx = rmmath::math::sqrt<T>(invsx);
-
+            if ( equal_to_one<T>(det) && equal<T>(vx, t.row[2].x) && equal<T>(vy, t.row[2].y)) {
 #ifdef RM_MATH_STAT
-                    RM_STAT_SQRT(1)
+                RM_STAT_MUL(12)
+                RM_STAT_SQRT(1)
+                RM_STAT_SUM(9)
+                RM_STAT_DIV(1)
+                RM_STAT_SUB(3)
 #endif
-                }
 
-                if (!rmmath::equal_to_one<T>(invsy)) {
-                    scaled = true;
-                    invsy = rmmath::math::sqrt<T>(invsy);
-#ifdef RM_MATH_STAT
-                    RM_STAT_SQRT(1)
-#endif
-                }
+                position->x = t.m00 * t.m30 + t.m01 * t.m31 + t.m02 * t.m32;
+                position->y = t.m10 * t.m30 + t.m11 * t.m31 + t.m12 * t.m32;
+                position->z = t.m20 * t.m30 + t.m21 * t.m31 + t.m22 * t.m32;
 
-                if (!rmmath::equal_to_one<T>(invsz)) {
-                    scaled = true;
-                    invsz = rmmath::math::sqrt<T>(invsz);
-#ifdef RM_MATH_STAT
-                    RM_STAT_SQRT(1)
-#endif
+                scale->z = scale->y = scale->x = (T)1;
+
+                const auto  tr = t.m00 + t.m11 + t.m22;
+
+                if (tr > 0) {
+                    auto S = std::sqrt(tr + (T)1) * 2; // S=4*qw
+                    rotation->w = (T)0.25 * S;
+                    rotation->i = (t.m21 - t.m12) / S;
+                    rotation->j = (t.m02 - t.m20) / S;
+                    rotation->k = (t.m10 - t.m01) / S;
+                } else if ((t.m00 > t.m11) && (t.m00 > t.m22)) {
+                    auto S = std::sqrt((T)1 + t.m00 - t.m11 - t.m22) * 2; // S=4*qx
+                    rotation->w = (t.m21 - t.m12) / S;
+                    rotation->i = (T) 0.25 * S;
+                    rotation->j = (t.m01 + t.m10) / S;
+                    rotation->k = (t.m02 + t.m20) / S;
+                } else if (t.m11 > t.m22) {
+                    auto S = std::sqrt((T)1 + t.m11 - t.m00 - t.m22) * 2; // S=4*qy
+                    rotation->w = (t.m02 - t.m20) / S;
+                    rotation->i = (t.m01 + t.m10) / S;
+                    rotation->j = (T)0.25 * S;
+                    rotation->k = (t.m12 + t.m21) / S;
+                } else {
+                    auto S = std::sqrt((T)1 + t.m22 - t.m00 - t.m11) * 2; // S=4*qz
+                    rotation->w = (t.m10 - t.m01) / S;
+                    rotation->i = (t.m02 + t.m20) / S;
+                    rotation->j = (t.m12 + t.m21) / S;
+                    rotation->k = (T)0.25 * S;
                 }
 
             } else {
-                mm = (T) 1 / mm;
 
-                invsx = rmmath::math::sqrt<T>(invsx * mm);
-                invsy = rmmath::math::sqrt<T>(invsy * mm);
-                invsz = rmmath::math::sqrt<T>(invsz * mm);
-                scaled = true;
+                const auto sysz_sx = vx/t.row[2].x;
+                const auto sxsz_sy = vy/t.row[2].y;
+                const auto sxsy_sz = vz/t.row[2].z;
 
-#ifdef RM_MATH_STAT
-                RM_STAT_MUL(3)
-                RM_STAT_SQRT(3)
-                RM_STAT_DIV(1)
-#endif
-            }
+                const auto sx2 = sxsz_sy*sxsy_sz;
+                const auto sy2 = sysz_sx*sxsy_sz;
+                const auto sz2 = sysz_sx*sxsz_sy;
 
-            if (scaled) {
+                scale->x = std::sqrt(sx2);
+                scale->y = std::sqrt(sy2);
+                scale->z = std::sqrt(sz2);
 
-#ifdef RM_MATH_STAT
-                RM_STAT_MUL(9)
-#endif
+                if (det < 0) {
+                    scale->x = -scale->x;
+                    scale->y = -scale->y;
+                    scale->z = -scale->z;
+                }
+
+                const auto invsx = ((T)1)/scale->x;
+                const auto invsy = ((T)1)/scale->y;
+                const auto invsz = ((T)1)/scale->z;
 
                 const T m00(invsx * t.m00);
                 const T m01(invsy * t.m01);
@@ -426,21 +427,6 @@ namespace rmmath {
                 const T m21(invsy * t.m21);
                 const T m22(invsz * t.m22);
 
-#ifdef RM_MATH_STAT
-                RM_STAT_MUL(16)
-                RM_STAT_SQRT(1)
-                RM_STAT_SUM(9)
-                RM_STAT_DIV(4)
-                RM_STAT_SUB(3)
-#endif
-
-                rotation->w = rmmath::math::sqrt<T>(1 + m00 + m11 + m22);
-                const T invW = (T) 0.5 / (rotation->w);
-                rotation->i = (m21 - m12) * invW;
-                rotation->j = (m02 - m20) * invW;
-                rotation->k = (m10 - m01) * invW;
-                rotation->w *= (T) 0.5;
-
                 const T m30(invsx * t.m30);
                 const T m31(invsy * t.m31);
                 const T m32(invsz * t.m32);
@@ -449,34 +435,34 @@ namespace rmmath {
                 position->y = m10 * m30 + m11 * m31 + m12 * m32;
                 position->z = m20 * m30 + m21 * m31 + m22 * m32;
 
-                scale->x = (T) 1 / invsx;
-                scale->y = (T) 1 / invsy;
-                scale->z = (T) 1 / invsz;
 
-            } else {
+                const auto  tr = m00 + m11 + m22;
 
-#ifdef RM_MATH_STAT
-                RM_STAT_MUL(12)
-                RM_STAT_SQRT(1)
-                RM_STAT_SUM(9)
-                RM_STAT_DIV(1)
-                RM_STAT_SUB(3)
-#endif
-
-                rotation->w = rmmath::math::sqrt<T>(1 + t.m00 + t.m11 + t.m22);
-                const T invW = (T) 0.5 / (rotation->w);
-                rotation->i = (t.m21 - t.m12) * invW;
-                rotation->j = (t.m02 - t.m20) * invW;
-                rotation->k = (t.m10 - t.m01) * invW;
-                rotation->w *= (T) 0.5;
-
-                position->x = t.m00 * t.m30 + t.m01 * t.m31 + t.m02 * t.m32;
-                position->y = t.m10 * t.m30 + t.m11 * t.m31 + t.m12 * t.m32;
-                position->z = t.m20 * t.m30 + t.m21 * t.m31 + t.m22 * t.m32;
-
-                scale->x = (T) 1;
-                scale->y = (T) 1;
-                scale->z = (T) 1;
+                if (tr > 0) {
+                    auto S = std::sqrt(tr + (T)1) * 2; // S=4*qw
+                    rotation->w = (T)0.25 * S;
+                    rotation->i = (m21 - m12) / S;
+                    rotation->j = (m02 - m20) / S;
+                    rotation->k = (m10 - m01) / S;
+                } else if ((m00 > m11) && (m00 > m22)) {
+                    auto S = std::sqrt((T)1 + m00 - m11 - m22) * 2; // S=4*qx
+                    rotation->w = (m21 - m12) / S;
+                    rotation->i = (T) 0.25 * S;
+                    rotation->j = (m01 + m10) / S;
+                    rotation->k = (m02 + m20) / S;
+                } else if (m11 > m22) {
+                    auto S = std::sqrt((T)1 + m11 - m00 - m22) * 2; // S=4*qy
+                    rotation->w = (m02 - m20) / S;
+                    rotation->i = (m01 + m10) / S;
+                    rotation->j = (T)0.25 * S;
+                    rotation->k = (m12 + m21) / S;
+                } else {
+                    auto S = std::sqrt((T)1 + m22 - m00 - m11) * 2; // S=4*qz
+                    rotation->w = (m10 - m01) / S;
+                    rotation->i = (m02 + m20) / S;
+                    rotation->j = (m12 + m21) / S;
+                    rotation->k = (T)0.25 * S;
+                }
 
             }
         }
