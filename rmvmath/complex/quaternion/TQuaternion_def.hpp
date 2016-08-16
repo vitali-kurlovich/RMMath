@@ -7,9 +7,8 @@
 
 #include "../../common/common.hpp"
 
-#include "vector/TVector3.hpp"
-#include "vector/TVector4.hpp"
-
+#include "../../vector/vector3x/TVector3_def.hpp"
+#include "../../vector/vector2x/TVector2_def.hpp"
 
 
 namespace rmmath {
