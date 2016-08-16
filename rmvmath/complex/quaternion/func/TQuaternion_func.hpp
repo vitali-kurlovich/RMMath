@@ -5,12 +5,14 @@
 #ifndef RMVECTORMATH_TQUATERNION_FUNC_HPP
 #define RMVECTORMATH_TQUATERNION_FUNC_HPP
 
+#include <cmath>
 
 #ifdef RM_MATH_STAT
 #include <profiler/profiler.hpp>
 #endif
 
 #include "../TQuaternion_def.hpp"
+
 
 namespace rmmath {
 
@@ -159,7 +161,7 @@ namespace rmmath {
             RM_STAT_DIV(1)
             RM_STAT_SQRT(1)
 #endif
-            auto invLen = 1 / sqrt(norm);
+            auto invLen = 1 / std::sqrt(norm);
             return TQuaternion<T>(a.w * invLen, a.i * invLen, a.j * invLen, a.k * invLen);
         }
 

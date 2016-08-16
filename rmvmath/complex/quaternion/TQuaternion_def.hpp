@@ -8,11 +8,11 @@
 #include "../../common/common.hpp"
 
 #include "../../vector/vector3x/TVector3_def.hpp"
-#include "../../vector/vector2x/TVector2_def.hpp"
+#include "../../vector/vector4x/TVector4_def.hpp"
 
 
 namespace rmmath {
-
+    
     namespace complex {
 
         template<typename T>
@@ -24,11 +24,11 @@ namespace rmmath {
                 };
 
                 struct {
-                     T re;
-                     vector::TVector3<T> im;
+                    T re;
+                    rmmath::vector::TVector3<T> im;
                 };
 
-                vector::TVector4<T> wijk;
+                rmmath::vector::TVector4<T> wijk;
             };
 
             constexpr
@@ -37,12 +37,12 @@ namespace rmmath {
             {}
 
             constexpr
-            TQuaternion( const T w, const vector::TVector3<T>& vec )  noexcept
+            TQuaternion( const T w, const rmmath::vector::TVector3<T>& vec )  noexcept
                     : re(w), im(vec)
             {}
 
             constexpr
-            TQuaternion( const vector::TVector3<T>& vec, const T w = 0 ) noexcept
+            TQuaternion( const rmmath::vector::TVector3<T>& vec, const T w = 0 ) noexcept
                     : re(w), im(vec)
             {}
 
