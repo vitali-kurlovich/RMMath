@@ -12,7 +12,7 @@
 #include "affinematrix4x4/func/TAffineMatrix4x4_func_mul.hpp"
 #include "affinematrix4x4/func/TAffineMatrix4x4_func_mulvec.hpp"
 #include "affinematrix4x4/func/TAffineMatrix4x4_func_mulaffinevec.hpp"
-#include "matrix/affinematrix4x4/func/TAffineMatrix4x4_equal.hpp"
+#include "affinematrix4x4/func/TAffineMatrix4x4_equal.hpp"
 
 #include "affinematrix4x4/operator/TAffineMatrix4x4_operator.hpp"
 #include "affinematrix4x4/operator/TAffineMatrix4x4_operator_mul.hpp"
