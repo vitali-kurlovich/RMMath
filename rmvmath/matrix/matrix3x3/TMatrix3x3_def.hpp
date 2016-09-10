@@ -26,10 +26,11 @@ namespace rmmath {
                 vector::TVector3<T> row[3];
             };
 
+            constexpr
             TMatrix3x3(
                     const T m00 = 0, const T m01 = 0, const T m02 = 0,
                     const T m10 = 0, const T m11 = 0, const T m12 = 0,
-                    const T m20 = 0, const T m21 = 0, const T m22 = 0)
+                    const T m20 = 0, const T m21 = 0, const T m22 = 0) noexcept
                     : m00(m00), m01(m01), m02(m02),
                       m10(m10), m11(m11), m12(m12),
                       m20(m20), m21(m21), m22(m22)
@@ -37,6 +38,7 @@ namespace rmmath {
 
             }
 
+            constexpr
             TMatrix3x3(const vector::TVector3<T>& row0,
                        const vector::TVector3<T>& row1 = vector::TVector3<T>::zero(),
                        const vector::TVector3<T>& row2 = vector::TVector3<T>::zero())
@@ -45,7 +47,7 @@ namespace rmmath {
 
             }
 
-            const vector::TVector3<T>& operator [] (std::size_t index) const {
+            constexpr vector::TVector3<T>& operator [] (std::size_t index) const {
                 return row[index];
             }
 

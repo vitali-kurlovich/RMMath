@@ -9,10 +9,10 @@
 
 #include "common/common.hpp"
 
-#include "complex/quaternion/TQuaternion_def.hpp"
-#include "matrix/matrix3x3/TMatrix3x3_def.hpp"
-#include "matrix/affinematrix4x4/TAffineMatrix4x4_def.hpp"
-#include "vector/vector3x/TVector3_def.hpp"
+#include "../complex/quaternion/TQuaternion_def.hpp"
+#include "../matrix/matrix3x3/TMatrix3x3_def.hpp"
+#include "../matrix/affinematrix4x4/TAffineMatrix4x4_def.hpp"
+#include "../vector/vector3x/TVector3_def.hpp"
 
 
 #ifdef RM_MATH_STAT
@@ -106,7 +106,7 @@ namespace rmmath {
 
             matrix::TAffineMatrix4x4<T> m(
 
-                    (T) 1 - (yy + zz),
+            static_cast<T>(1) - (yy + zz),
                     xy - wz,
                     xz + wy,
 
@@ -116,7 +116,8 @@ namespace rmmath {
 
                     xz - wy,
                     yz + wx,
-                    (T) 1 - (xx + yy),
+
+            static_cast<T>(1) - (xx + yy),
 
                     position.x,
                     position.y,
@@ -171,7 +172,7 @@ namespace rmmath {
 
             matrix::TAffineMatrix4x4<T> m(
 
-                    (T) 1 - (yy + zz),
+                    static_cast<T>(1) - (yy + zz),
                     xy - wz,
                     xz + wy,
 
@@ -181,7 +182,7 @@ namespace rmmath {
 
                     xz - wy,
                     yz + wx,
-                    (T) 1 - (xx + yy),
+                    static_cast<T>(1) - (xx + yy),
 
                     position.x,
                     position.y,
