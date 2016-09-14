@@ -30,7 +30,7 @@ namespace rmmath {
             RM_STAT_MUL(3)
 #endif
 
-            const T half_angle(angle * (T) 0.5);
+            const T half_angle(angle * static_cast<T>(0.5));
             const T _sin(std::sin(half_angle));
 
             return complex::TQuaternion<T>(std::cos(half_angle), axis.x * _sin, axis.y * _sin, axis.z * _sin);
@@ -62,17 +62,17 @@ namespace rmmath {
             const T wz(q.w * z2);
 
             return matrix::TMatrix3x3<T>(
-                    (T) 1 - (yy + zz),
+                    static_cast<T>(1) - (yy + zz),
                     xy - wz,
                     xz + wy,
 
                     xy + wz,
-                    (T) 1 - (xx + zz),
+                    static_cast<T>(1) - (xx + zz),
                     yz - wx,
 
                     xz - wy,
                     yz + wx,
-                    (T) 1 - (xx + yy)
+                    static_cast<T>(1) - (xx + yy)
             );
         }
 
@@ -111,12 +111,11 @@ namespace rmmath {
                     xz + wy,
 
                     xy + wz,
-                    (T) 1 - (xx + zz),
+            static_cast<T>(1) - (xx + zz),
                     yz - wx,
 
                     xz - wy,
                     yz + wx,
-
             static_cast<T>(1) - (xx + yy),
 
                     position.x,
@@ -129,15 +128,6 @@ namespace rmmath {
             RM_STAT_MUL(9)
             RM_STAT_SUM(6)
 #endif
-
-            m.m30 *= m.m00;
-            m.m30 += (m.m10 * position.y + m.m20 * position.z);
-
-            m.m31 *= m.m11;
-            m.m31 += (m.m01 * position.x + m.m21 * position.z);
-
-            m.m32 *= m.m22;
-            m.m32 += (m.m02 * position.x + m.m12 * position.y);
 
             return m;
         };
@@ -172,54 +162,22 @@ namespace rmmath {
 
             matrix::TAffineMatrix4x4<T> m(
 
-                    static_cast<T>(1) - (yy + zz),
-                    xy - wz,
-                    xz + wy,
+                    (static_cast<T>(1) - (yy + zz))*scale.x,
+                    (xy - wz)*scale.x,
+                    (xz + wy)*scale.x,
 
-                    xy + wz,
-                    (T) 1 - (xx + zz),
-                    yz - wx,
+                    (xy + wz)*scale.y,
+                    (static_cast<T>(1) - (xx + zz))*scale.y,
+                    (yz - wx)*scale.y,
 
-                    xz - wy,
-                    yz + wx,
-                    static_cast<T>(1) - (xx + yy),
+                    (xz - wy)*scale.z,
+                    (yz + wx)*scale.z,
+                    (static_cast<T>(1) - (xx + yy))*scale.z,
 
                     position.x,
                     position.y,
                     position.z
             );
-
-#ifdef RM_MATH_STAT
-            RM_STAT_MUL(9)
-            RM_STAT_SUM(6)
-#endif
-
-            m.m30 *= m.m00;
-            m.m30 += (m.m10 * position.y + m.m20 * position.z);
-
-            m.m31 *= m.m11;
-            m.m31 += (m.m01 * position.x + m.m21 * position.z);
-
-            m.m32 *= m.m22;
-            m.m32 += (m.m02 * position.x + m.m12 * position.y);
-
-
-#ifdef RM_MATH_STAT
-            RM_STAT_MUL(12)
-#endif
-
-            m.m00 *= scale.x;
-            m.m01 *= scale.y;
-            m.m02 *= scale.z;
-            m.m10 *= scale.x;
-            m.m11 *= scale.y;
-            m.m12 *= scale.z;
-            m.m20 *= scale.x;
-            m.m21 *= scale.y;
-            m.m22 *= scale.z;
-            m.m30 *= scale.x;
-            m.m31 *= scale.y;
-            m.m32 *= scale.z;
 
             return m;
         }
@@ -255,17 +213,17 @@ namespace rmmath {
 
             matrix::TAffineMatrix4x4<T> m(
 
-                    (T) 1 - (yy + zz),
+                    static_cast<T>(1) - (yy + zz),
                     xy + wz,
                     xz - wy,
 
                     xy - wz,
-                    (T) 1 - (xx + zz),
+                    static_cast<T>(1) - (xx + zz),
                     yz + wx,
 
                     xz + wy,
                     yz - wx,
-                    (T) 1 - (xx + yy),
+                    static_cast<T>(1) - (xx + yy),
 
                     -position.x,
                     -position.y,
